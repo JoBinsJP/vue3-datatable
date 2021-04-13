@@ -19,8 +19,11 @@ const useRoute = () => {
         window.history.pushState(null, routes[href].title, href)
     }
 
+    const isActive = (href: string): boolean => routeUrl.value === href
+
     return {
         setRoute,
+        isActive,
         routeUrl,
         currentRoute,
     }
