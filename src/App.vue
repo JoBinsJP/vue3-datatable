@@ -1,20 +1,31 @@
 <template>
     <div class="bg-gray-100 py-6">
-        <div class="max-w-7xl h-screen mx-auto sm:px-6 lg:px-8">
-            <data-table/>
+        <div class="flex flex-col gap-10 lg:px-8 max-w-7xl mx-auto sm:px-6">
+            <basic :data="tableData"/>
+
+            <striped :data="tableData"/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent } from "vue"
-    import { DataTable }       from "../lib/DataTable"
+    import Basic               from "./components/Basic.vue"
+    import Striped             from "./components/Striped.vue"
+    import jsonData            from "./data/data.json"
 
     export default defineComponent({
         name: "App",
 
         components: {
-            DataTable,
+            Striped,
+            Basic,
+        },
+
+        setup() {
+            const tableData = jsonData
+
+            return { tableData }
         },
     })
 </script>
