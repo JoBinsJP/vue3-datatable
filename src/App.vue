@@ -1,31 +1,36 @@
 <template>
-    <div class="bg-gray-100 py-6">
-        <div class="flex flex-col gap-10 lg:px-8 max-w-7xl mx-auto sm:px-6">
-            <basic :data="tableData"/>
-
-            <striped :data="tableData"/>
-        </div>
-    </div>
+    <layout :title="currentRoute.title">
+        <component :is="currentRoute.component" :data="tableData"/>
+    </layout>
 </template>
 
 <script lang="ts">
-    import { defineComponent } from "vue"
-    import Basic               from "./components/Basic.vue"
-    import Striped             from "./components/Striped.vue"
-    import jsonData            from "./data/data.json"
+    import {
+        defineComponent,
+        provide,
+    }               from "vue"
+    import Layout   from "./components/Layout/Layout.vue"
+    import useRoute from "./composables/useRoute"
+    import jsonData from "./data/data.json"
 
     export default defineComponent({
         name: "App",
 
         components: {
-            Striped,
-            Basic,
+            Layout,
         },
 
         setup() {
             const tableData = jsonData
 
-            return { tableData }
+            const route = useRoute()
+
+            provide("route", route)
+
+            return {
+                tableData,
+                currentRoute: route.currentRoute,
+            }
         },
     })
 </script>

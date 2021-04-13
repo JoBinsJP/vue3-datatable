@@ -1,16 +1,12 @@
 <template>
-    <div>
-        <h2>Basic</h2>
-
-        <data-table :rows="data"/>
-    </div>
+    <data-table :rows="data" striped/>
 </template>
 
 <script type="ts">
     import { defineComponent } from "vue"
-    import { DataTable }       from "../../lib/DataTable"
+    import { DataTable }       from "../../../lib/DataTable"
 
-    const Basic = defineComponent({
+    const Striped = defineComponent({
         components: { DataTable },
 
         props: {
@@ -18,5 +14,5 @@
         },
     })
 
-    export default Basic
+    export default Striped
 </script>
