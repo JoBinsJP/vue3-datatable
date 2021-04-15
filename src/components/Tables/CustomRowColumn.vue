@@ -1,10 +1,18 @@
 <template>
-    <data-table :rows="data" striped>
+    <data-table :rows="data" striped sn>
+        <template #thead-sn>
+            <table-head>SN</table-head>
+        </template>
+
         <template #thead>
             <table-head>Full Name</table-head>
             <table-head>Account</table-head>
             <table-head>Gender</table-head>
             <table-head/>
+        </template>
+
+        <template #tbody-sn="{sn}">
+            <table-head v-text="sn.toString().padStart(2, '0')"/>
         </template>
 
         <template #tbody="{row}">

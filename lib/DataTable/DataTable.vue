@@ -6,6 +6,10 @@
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
+                                <slot v-if="sn" name="thead-sn">
+                                    <table-head v-text="`S.N.`"/>
+                                </slot>
+
                                 <slot name="thead" :column="tableColumns">
                                     <table-head v-for="(label, key) in tableColumns"
                                                 :key="`datatable-thead-th-${key}`"
@@ -18,6 +22,10 @@
                             <tr v-for="(row, rowIndex) in tableRows"
                                 :key="`datatable-tbody-${uniqueId()}-${rowIndex}`"
                                 :class="striped && rowIndex % 2 ? 'bg-gray-50' : 'bg-white'">
+                                <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
+                                    <table-body v-text="rowIndex + 1"/>
+                                </slot>
+
                                 <slot name="tbody" :index="rowIndex" :row="row">
                                     <table-body v-for="(_, key) in tableColumns"
                                                 :key="`datatable-tbody-td-${uniqueId()}-${key}`"
@@ -47,6 +55,7 @@
             rows: { type: Array, required: true },
             columns: { type: Object, required: false, default: null },
             striped: { type: Boolean, required: false, default: false },
+            sn: { type: Boolean, required: false, default: false },
         },
 
         setup(props) {

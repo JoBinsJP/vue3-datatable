@@ -1,5 +1,5 @@
 <template>
-    <data-table :rows="data" striped/>
+    <data-table :rows="data" striped sn/>
 </template>
 
 <script type="ts">
