@@ -1,20 +1,36 @@
 <template>
-    <div class="bg-gray-100 py-6">
-        <div class="max-w-7xl h-screen mx-auto sm:px-6 lg:px-8">
-            <data-table/>
-        </div>
-    </div>
+    <layout :title="currentRoute.title">
+        <component :is="currentRoute.component" :data="tableData"/>
+    </layout>
 </template>
 
 <script lang="ts">
-    import { defineComponent } from "vue"
-    import { DataTable }       from "../lib/DataTable"
+    import {
+        defineComponent,
+        provide,
+    }               from "vue"
+    import Layout   from "./components/Layout/Layout.vue"
+    import useRoute from "./composables/useRoute"
+    import jsonData from "./data/data.json"
 
     export default defineComponent({
         name: "App",
 
         components: {
-            DataTable,
+            Layout,
+        },
+
+        setup() {
+            const tableData = jsonData
+
+            const route = useRoute()
+
+            provide("route", route)
+
+            return {
+                tableData,
+                currentRoute: route.currentRoute,
+            }
         },
     })
 </script>

@@ -1,83 +1,100 @@
 <template>
-    <!-- This example requires Tailwind CSS v2.0+ -->
-    <div class="flex flex-col">
+    <div class="data-table flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+                <div class="table-wrapper shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <div class="pagination-wrapper">
+                        <pagination :total="56" :current-page="3" @changed="handlePageChange"/>
+                    </div>
+
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Name
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Title
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Email
-                                </th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Role
-                                </th>
-                                <th scope="col" class="relative px-6 py-3">
-                                    <span class="sr-only">Edit</span>
-                                </th>
+                                <slot v-if="sn" name="thead-sn">
+                                    <table-head v-text="`S.N.`"/>
+                                </slot>
+
+                                <slot name="thead" :column="tableColumns">
+                                    <table-head v-for="(label, key) in tableColumns"
+                                                :key="`datatable-thead-th-${key}`"
+                                                v-text="label"/>
+                                </slot>
                             </tr>
                         </thead>
+
                         <tbody>
-                            <!-- Odd row -->
-                            <tr class="bg-white">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    Jane Cooper
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Regional Paradigm Technician
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    jane.cooper@example.com
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Admin
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
-                            </tr>
+                            <tr v-for="(row, rowIndex) in tableRows"
+                                :key="`datatable-tbody-${uniqueId()}-${rowIndex}`"
+                                :class="striped && rowIndex % 2 ? 'bg-gray-50' : 'bg-white'">
+                                <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
+                                    <table-body v-text="rowIndex + 1"/>
+                                </slot>
 
-                            <!-- Even row -->
-                            <tr class="bg-gray-50">
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                    Cody Fisher
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Product Directives Officer
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    cody.fisher@example.com
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    Owner
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                                </td>
+                                <slot name="tbody" :index="rowIndex" :row="row">
+                                    <table-body v-for="(_, key) in tableColumns"
+                                                :key="`datatable-tbody-td-${uniqueId()}-${key}`"
+                                                v-text="row[key]"/>
+                                </slot>
                             </tr>
-
-                            <!-- More items... -->
                         </tbody>
                     </table>
+
+                    <div class="pagination-wrapper">
+                        <pagination :total="56"/>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 </template>
 
-<script type="text/ecmascript-6">
-    export default {
-        name: "DataTable",
-    }
+<script lang="ts">
+    import {
+        computed,
+        defineComponent,
+    }                 from "vue"
+    import Pagination from "./Components/Pagination.vue"
+    import TableBody  from "./Components/TableBody.vue"
+    import TableHead  from "./Components/TableHead.vue"
+
+    const DataTable = defineComponent({
+        components: { Pagination, TableBody, TableHead },
+
+        props: {
+            rows: { type: Array, required: true },
+            columns: { type: Object, required: false, default: null },
+            striped: { type: Boolean, required: false, default: false },
+            sn: { type: Boolean, required: false, default: false },
+        },
+
+        setup(props) {
+            const tableRows = computed(() => props.rows)
+
+            const tableColumns = computed(() => {
+                if (props.columns) {
+                    return props.columns
+                }
+
+                if (props.rows.length === 0) {
+                    return {}
+                }
+
+                return Object.entries(props.rows[0]).reduce((cols, [key, _]) => ({ ...cols, [key]: key }), {})
+            })
+
+            const uniqueId = () => Math.floor(Math.random() * 100)
+
+            const handlePageChange = (page) => {
+                console.log(page, "handlePageChange")
+            }
+
+            return { tableRows, tableColumns, uniqueId, handlePageChange }
+        },
+    })
+
+    export default DataTable
 </script>
 
-<style scoped lang="scss">
-    @import "./DataTable.scss";
-</style>
+<style scoped lang="scss" src="./DataTable.scss"/>
