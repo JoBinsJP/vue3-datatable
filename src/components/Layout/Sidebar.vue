@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script type="ts">
+<script lang="ts">
     import { defineComponent } from "vue"
     import Menus               from "./Menus.vue"
 

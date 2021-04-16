@@ -2,7 +2,7 @@
     <data-table :rows="data" striped sn/>
 </template>
 
-<script type="ts">
+<script lang="ts">
     import { defineComponent } from "vue"
     import { DataTable }       from "../../../lib/DataTable"
 

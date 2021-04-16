@@ -5,7 +5,7 @@
     </a>
 </template>
 
-<script type="ts">
+<script lang="ts">
     import {
         defineComponent,
         inject,

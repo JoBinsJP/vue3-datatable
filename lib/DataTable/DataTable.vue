@@ -2,7 +2,12 @@
     <div class="data-table flex flex-col">
         <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+
+                <div class="table-wrapper shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <div class="pagination-wrapper">
+                        <pagination :total="56" :current-page="3" @changed="handlePageChange"/>
+                    </div>
+
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                             <tr>
@@ -34,22 +39,28 @@
                             </tr>
                         </tbody>
                     </table>
+
+                    <div class="pagination-wrapper">
+                        <pagination :total="56"/>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
 </template>
 
-<script type="ts">
+<script lang="ts">
     import {
         computed,
         defineComponent,
-    }                from "vue"
-    import TableBody from "./Components/TableBody.vue"
-    import TableHead from "./Components/TableHead.vue"
+    }                 from "vue"
+    import Pagination from "./Components/Pagination.vue"
+    import TableBody  from "./Components/TableBody.vue"
+    import TableHead  from "./Components/TableHead.vue"
 
     const DataTable = defineComponent({
-        components: { TableBody, TableHead },
+        components: { Pagination, TableBody, TableHead },
 
         props: {
             rows: { type: Array, required: true },
@@ -75,7 +86,11 @@
 
             const uniqueId = () => Math.floor(Math.random() * 100)
 
-            return { tableRows, tableColumns, uniqueId }
+            const handlePageChange = (page) => {
+                console.log(page, "handlePageChange")
+            }
+
+            return { tableRows, tableColumns, uniqueId, handlePageChange }
         },
     })
 
