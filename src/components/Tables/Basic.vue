@@ -1,5 +1,5 @@
 <template>
-    <data-table :rows="data"/>
+    <data-table :rows="data" :pagination="pagination"/>
 </template>
 
 <script lang="ts">
@@ -11,6 +11,16 @@
 
         props: {
             data: { type: Array, required: true },
+        },
+
+        setup() {
+            const pagination = {
+                page: 1,
+                total: 43,
+                per_page: 10,
+            }
+
+            return { pagination }
         },
     })
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div v-if="totalPages" class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div v-show="total">
                 <p class="text-sm text-gray-700">
@@ -41,7 +41,7 @@
                                      :key="`pages_${pageIndex}`"
                                      :active="page === currentPage"
                                      :disabled="page === currentPage"
-                                     @click="gotoPreviousPage(page)">
+                                     @click="goToPageNumber(page)">
                         {{ page }}
                     </pagination-link>
 
@@ -84,14 +84,14 @@
 
         components: { PaginationLink },
 
-        emits: ["changed"],
-
         props: {
             total: { type: Number, required: true },
-            perPage: { type: Number, required: false, default: 10 },
+            perPage: { type: Number, required: true },
             currentPage: { type: Number, required: false, default: 1 },
             maxVisibleButtons: { type: Number, required: false, default: 5 },
         },
+
+        emits: ["changed"],
 
         setup(props, { emit }) {
             const currentStart = computed(() => (props.currentPage - 1) * props.perPage + 1)

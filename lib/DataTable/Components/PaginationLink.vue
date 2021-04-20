@@ -25,7 +25,7 @@
                 }
 
                 if (props.disabled) {
-                    return ""
+                    return "cursor-not-allowed text-gray-400"
                 }
 
                 return "border-gray-300 bg-white text-gray-500 hover:bg-gray-50"
