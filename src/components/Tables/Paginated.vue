@@ -6,10 +6,6 @@
             <table-head>Airline</table-head>
         </template>
 
-        <template #tbody-sn="{sn}">
-            <table-head v-text="sn.toString().padStart(2, '0')"/>
-        </template>
-
         <template #tbody="{row}">
             <table-body v-text="row.name"/>
 

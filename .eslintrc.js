@@ -36,5 +36,15 @@ module.exports = {
                 "proseWrap": "always",
             },
         ],
+        "vue/max-attributes-per-line": [
+            "error",
+            {
+                "singleline": 4,
+                "multiline": {
+                    "max": 1,
+                    "allowFirstLine": true,
+                },
+            },
+        ],
     },
 }

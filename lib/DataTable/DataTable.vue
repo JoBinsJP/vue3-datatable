@@ -24,8 +24,12 @@
                 </div>
 
                 <div class="table-wrapper shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <div class="pagination-wrapper flex bg-white items-center">
-                        <pagination class="flex-1" :total="totalData" :current-page="tableQuery.page" :per-page="tableQuery.per_page" @changed="handlePageChange"/>
+                    <div v-if="showPagination" class="pagination-wrapper flex bg-white items-center">
+                        <pagination class="flex-1"
+                                    :total="totalData"
+                                    :current-page="tableQuery.page"
+                                    :per-page="tableQuery.per_page"
+                                    @changed="handlePageChange"/>
 
                         <div class="pr-4">
                             <label for="location" class="sr-only">Per page</label>
@@ -60,7 +64,7 @@
                                 :key="`datatable-tbody-${uniqueId()}-${rowIndex}`"
                                 :class="striped && rowIndex % 2 ? 'bg-gray-50' : 'bg-white'">
                                 <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
-                                    <table-body v-text="rowIndex + 1"/>
+                                    <table-body v-text="rowIndex + 1 + paginatedRowIndex"/>
                                 </slot>
 
                                 <slot name="tbody" :index="rowIndex" :row="row">
@@ -72,7 +76,7 @@
                         </tbody>
                     </table>
 
-                    <div class="pagination-wrapper">
+                    <div v-if="showPagination" class="pagination-wrapper">
                         <pagination :total="totalData" :current-page="tableQuery.page" :per-page="tableQuery.per_page" @changed="handlePageChange"/>
                     </div>
                 </div>
@@ -108,7 +112,7 @@
             rows: { type: Array, required: true },
             columns: { type: Object, required: false, default: null },
             pagination: {
-                type: Object as PropType<PaginationProps>, required: false, default: () => ({ total: 0, per_page: PER_PAGE, page: 1 }),
+                type: Object as PropType<PaginationProps>, required: false, default: null,
             },
             striped: { type: Boolean, required: false, default: false },
             sn: { type: Boolean, required: false, default: false },
@@ -120,12 +124,13 @@
 
         setup(props, { emit }: SetupContext) {
             const tableQuery = reactive({
-                page: props.pagination.page || 1,
+                page: props.pagination?.page || 1,
                 search: props.query.search || "",
-                per_page: props.pagination.per_page || PER_PAGE,
+                per_page: props.pagination?.per_page || PER_PAGE,
             })
 
-            const totalData = computed(() => props.pagination.total || props.rows.length)
+            const showPagination = computed(() => !!props.pagination)
+            const totalData = computed(() => props.pagination?.total || props.rows.length)
             const tableRows = computed(() => props.rows)
 
             const tableColumns = computed(() => {
@@ -139,6 +144,8 @@
 
                 return Object.entries(props.rows[0]).reduce((cols, [key, _]) => ({ ...cols, [key]: key }), {})
             })
+
+            const paginatedRowIndex = computed(() => showPagination.value ? tableQuery.per_page * (tableQuery.page - 1) : 0)
 
             const uniqueId = () => Math.floor(Math.random() * 100)
 
@@ -157,7 +164,7 @@
                 immediate: true,
             })
 
-            return { tableQuery, totalData, tableRows, tableColumns, uniqueId, handlePageChange }
+            return { tableQuery, showPagination, totalData, tableRows, tableColumns, paginatedRowIndex, uniqueId, handlePageChange }
         },
     })
 
