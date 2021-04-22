@@ -1,6 +1,7 @@
 import { Routes }      from "./@types/Route"
 import Basic           from "./components/Tables/Basic.vue"
 import CustomRowColumn from "./components/Tables/CustomRowColumn.vue"
+import Paginated       from "./components/Tables/Paginated.vue"
 import Striped         from "./components/Tables/Striped.vue"
 
 const routes: Routes = {
@@ -25,6 +26,12 @@ const routes: Routes = {
         title: "Custom Row & Column",
         group: "table",
         component: CustomRowColumn,
+    },
+
+    "/table/paginated": {
+        title: "Paginated",
+        group: "table",
+        component: Paginated,
     },
 }
 

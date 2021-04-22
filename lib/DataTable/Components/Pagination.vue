@@ -17,18 +17,18 @@
 
             <div v-if="totalPages > 1">
                 <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <pagination-link :disabled="isInFirstPage" class="rounded-l-md" @click="gotoFirstPage">
+                    <pagination-link :disabled="isInFirstPage" class="rounded-l-md" @click.prevent="gotoFirstPage">
                         <span class="sr-only">Go to first</span>
                         &laquo;
                     </pagination-link>
 
-                    <pagination-link :disabled="isInFirstPage" @click="gotoPreviousPage">
+                    <pagination-link :disabled="isInFirstPage" @click.prevent="gotoPreviousPage">
                         <span class="sr-only">Previous</span>
                         &lsaquo;
                     </pagination-link>
 
                     <template v-if="showDots('left')">
-                        <pagination-link :disabled="isInFirstPage" :active="isInFirstPage" @click="gotoFirstPage">
+                        <pagination-link :disabled="isInFirstPage" :active="isInFirstPage" @click.prevent="gotoFirstPage">
                             1
                         </pagination-link>
 
@@ -41,7 +41,7 @@
                                      :key="`pages_${pageIndex}`"
                                      :active="page === currentPage"
                                      :disabled="page === currentPage"
-                                     @click="goToPageNumber(page)">
+                                     @click.prevent="goToPageNumber(page)">
                         {{ page }}
                     </pagination-link>
 
@@ -50,17 +50,17 @@
                             ...
                         </pagination-link>
 
-                        <pagination-link :disabled="isInLastPage" :active="isInLastPage" @click="gotoLastPage">
+                        <pagination-link :disabled="isInLastPage" :active="isInLastPage" @click.prevent="gotoLastPage">
                             {{ totalPages }}
                         </pagination-link>
                     </template>
 
-                    <pagination-link :disabled="isInLastPage" @click="gotoNextPage">
+                    <pagination-link :disabled="isInLastPage" @click.prevent="gotoNextPage">
                         <span class="sr-only">Next</span>
                         &rsaquo;
                     </pagination-link>
 
-                    <pagination-link :disabled="isInLastPage" class="rounded-r-md" @click="gotoLastPage">
+                    <pagination-link :disabled="isInLastPage" class="rounded-r-md" @click.prevent="gotoLastPage">
                         <span class="sr-only">Go to Last</span>
                         &raquo;
                     </pagination-link>

@@ -25,7 +25,7 @@
 
                 <div class="table-wrapper shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
                     <div class="pagination-wrapper flex bg-white items-center">
-                        <pagination class="flex-1" :total="pagination.total" :current-page="tableQuery.page" :per-page="tableQuery.per_page" @changed="handlePageChange"/>
+                        <pagination class="flex-1" :total="totalData" :current-page="tableQuery.page" :per-page="tableQuery.per_page" @changed="handlePageChange"/>
 
                         <div class="pr-4">
                             <label for="location" class="sr-only">Per page</label>
@@ -73,7 +73,7 @@
                     </table>
 
                     <div class="pagination-wrapper">
-                        <pagination :total="pagination.total" :current-page="tableQuery.page" :per-page="tableQuery.per_page" @changed="handlePageChange"/>
+                        <pagination :total="totalData" :current-page="tableQuery.page" :per-page="tableQuery.per_page" @changed="handlePageChange"/>
                     </div>
                 </div>
 
@@ -88,8 +88,11 @@
         defineComponent,
         PropType,
         reactive,
+        SetupContext,
+        watch,
     }                          from "vue"
     import { PaginationProps } from "./@types/PaginationProps"
+    import { QueryProps }      from "./@types/QueryProps"
     import Pagination          from "./Components/Pagination.vue"
     import TableBody           from "./Components/TableBody.vue"
     import TableHead           from "./Components/TableHead.vue"
@@ -110,16 +113,19 @@
             striped: { type: Boolean, required: false, default: false },
             sn: { type: Boolean, required: false, default: false },
             perPageOptions: { type: Array as PropType<number[]>, required: false, default: () => PER_PAGE_OPTIONS },
-            query: { type: Object, required: false, default: () => ({}) },
+            query: { type: Object as PropType<QueryProps>, required: false, default: () => ({}) },
         },
 
-        setup(props) {
+        emits: ["loadData"],
+
+        setup(props, { emit }: SetupContext) {
             const tableQuery = reactive({
                 page: props.pagination.page || 1,
                 search: props.query.search || "",
                 per_page: props.pagination.per_page || PER_PAGE,
             })
 
+            const totalData = computed(() => props.pagination.total || props.rows.length)
             const tableRows = computed(() => props.rows)
 
             const tableColumns = computed(() => {
@@ -140,7 +146,18 @@
                 tableQuery.page = page
             }
 
-            return { tableQuery, tableRows, tableColumns, uniqueId, handlePageChange }
+            const fireDataLoad = () => {
+                emit("loadData", tableQuery)
+            }
+
+            watch(() => ({ ...tableQuery }), () => {
+                fireDataLoad()
+            }, {
+                deep: true,
+                immediate: true,
+            })
+
+            return { tableQuery, totalData, tableRows, tableColumns, uniqueId, handlePageChange }
         },
     })
 
