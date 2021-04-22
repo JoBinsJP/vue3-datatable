@@ -17,6 +17,7 @@
         "vue": "^3.0.5"
     },
     "devDependencies": {
+        "@tailwindcss/forms": "^0.3.2",
         "@tailwindcss/jit": "^0.1.18",
         "@typescript-eslint/eslint-plugin": "^4.21.0",
         "@typescript-eslint/parser": "^4.21.0",
@@ -25,6 +26,7 @@
         "@vue/eslint-config-prettier": "^6.0.0",
         "@vue/eslint-config-typescript": "^7.0.0",
         "autoprefixer": "^10.2.5",
+        "axios": "^0.21.1",
         "eslint": "^7.24.0",
         "eslint-plugin-prettier": "^3.3.1",
         "eslint-plugin-vue": "^7.8.0",

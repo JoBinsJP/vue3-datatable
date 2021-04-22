@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
+    <div v-if="totalPages" class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
         <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
             <div v-show="total">
                 <p class="text-sm text-gray-700">
@@ -17,18 +17,18 @@
 
             <div v-if="totalPages > 1">
                 <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <pagination-link :disabled="isInFirstPage" class="rounded-l-md" @click="gotoFirstPage">
+                    <pagination-link :disabled="isInFirstPage" class="rounded-l-md" @click.prevent="gotoFirstPage">
                         <span class="sr-only">Go to first</span>
                         &laquo;
                     </pagination-link>
 
-                    <pagination-link :disabled="isInFirstPage" @click="gotoPreviousPage">
+                    <pagination-link :disabled="isInFirstPage" @click.prevent="gotoPreviousPage">
                         <span class="sr-only">Previous</span>
                         &lsaquo;
                     </pagination-link>
 
                     <template v-if="showDots('left')">
-                        <pagination-link :disabled="isInFirstPage" :active="isInFirstPage" @click="gotoFirstPage">
+                        <pagination-link :disabled="isInFirstPage" :active="isInFirstPage" @click.prevent="gotoFirstPage">
                             1
                         </pagination-link>
 
@@ -41,7 +41,7 @@
                                      :key="`pages_${pageIndex}`"
                                      :active="page === currentPage"
                                      :disabled="page === currentPage"
-                                     @click="gotoPreviousPage(page)">
+                                     @click.prevent="goToPageNumber(page)">
                         {{ page }}
                     </pagination-link>
 
@@ -50,17 +50,17 @@
                             ...
                         </pagination-link>
 
-                        <pagination-link :disabled="isInLastPage" :active="isInLastPage" @click="gotoLastPage">
+                        <pagination-link :disabled="isInLastPage" :active="isInLastPage" @click.prevent="gotoLastPage">
                             {{ totalPages }}
                         </pagination-link>
                     </template>
 
-                    <pagination-link :disabled="isInLastPage" @click="gotoNextPage">
+                    <pagination-link :disabled="isInLastPage" @click.prevent="gotoNextPage">
                         <span class="sr-only">Next</span>
                         &rsaquo;
                     </pagination-link>
 
-                    <pagination-link :disabled="isInLastPage" class="rounded-r-md" @click="gotoLastPage">
+                    <pagination-link :disabled="isInLastPage" class="rounded-r-md" @click.prevent="gotoLastPage">
                         <span class="sr-only">Go to Last</span>
                         &raquo;
                     </pagination-link>
@@ -84,14 +84,14 @@
 
         components: { PaginationLink },
 
-        emits: ["changed"],
-
         props: {
             total: { type: Number, required: true },
-            perPage: { type: Number, required: false, default: 10 },
+            perPage: { type: Number, required: true },
             currentPage: { type: Number, required: false, default: 1 },
             maxVisibleButtons: { type: Number, required: false, default: 5 },
         },
+
+        emits: ["changed"],
 
         setup(props, { emit }) {
             const currentStart = computed(() => (props.currentPage - 1) * props.perPage + 1)
