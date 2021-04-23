@@ -7,7 +7,7 @@
                     <div class="w-64">
                         <label for="email" class="sr-only">Search</label>
                         <div class="relative rounded-md shadow-sm">
-                            <input :value="tableQuery.search"
+                            <input :value="tableQuery?.search"
                                    type="search"
                                    name="search"
                                    class="focus:ring-0 block w-full pr-10 sm:text-sm border-gray-300 rounded-md"
@@ -28,20 +28,20 @@
                     <div v-if="showPagination" class="pagination-wrapper flex bg-white items-center">
                         <pagination class="flex-1"
                                     :total="totalData"
-                                    :current-page="tableQuery.page"
-                                    :per-page="parseInt(tableQuery.per_page.toString())"
+                                    :current-page="tableQuery?.page"
+                                    :per-page="parseInt(tableQuery?.per_page.toString())"
                                     @changed="handlePageChange"/>
 
                         <div class="pr-4">
                             <label for="location" class="sr-only">Per page</label>
-                            <select :value="tableQuery.per_page"
+                            <select :value="tableQuery?.per_page"
                                     name="per_page"
                                     class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 sm:text-sm rounded-md"
                                     @input="handleOnChange">
                                 <option v-for="size in perPageOptions"
                                         :key="`per_page_${size}`"
                                         :value="size"
-                                        :selected="size === tableQuery.per_page"
+                                        :selected="size === tableQuery?.per_page"
                                         v-text="size"/>
                             </select>
                         </div>
@@ -71,8 +71,9 @@
                                 </slot>
 
                                 <slot name="tbody" :index="rowIndex" :row="row">
-                                    <table-body v-for="(_, key) in tableColumns"
+                                    <table-body v-for="(label, key) in tableColumns"
                                                 :key="`datatable-tbody-td-${uniqueId()}-${key}`"
+                                                :name="label"
                                                 v-text="row[key]"/>
                                 </slot>
                             </tr>
@@ -80,7 +81,7 @@
                     </table>
 
                     <div v-if="showPagination" class="pagination-wrapper">
-                        <pagination :total="totalData" :current-page="tableQuery.page" :per-page="parseInt(tableQuery.per_page.toString())" @changed="handlePageChange"/>
+                        <pagination :total="totalData" :current-page="tableQuery?.page" :per-page="parseInt(tableQuery?.per_page.toString())" @changed="handlePageChange"/>
                     </div>
                 </div>
 
@@ -100,6 +101,7 @@
     }                          from "vue"
     import { PaginationProps } from "./@types/PaginationProps"
     import { QueryProps }      from "./@types/QueryProps"
+    import { TableQuery }      from "./@types/TableQuery"
     import Pagination          from "./Components/Pagination.vue"
     import TableBody           from "./Components/TableBody.vue"
     import TableHead           from "./Components/TableHead.vue"
@@ -125,8 +127,8 @@
 
         emits: ["loadData"],
 
-        setup(props, { emit }: SetupContext) {
-            const tableQuery = ref({
+        setup<T>(props, { emit }: SetupContext) {
+            const tableQuery = ref<TableQuery>({
                 page: props.pagination?.page || 1,
                 search: props.query.search || "",
                 per_page: props.pagination?.per_page || PER_PAGE,
@@ -134,7 +136,7 @@
 
             const showPagination = computed(() => !!props.pagination)
             const totalData = computed(() => props.pagination?.total || props.rows.length)
-            const tableRows = computed(() => props.rows)
+            const tableRows = computed<T[]>(() => props.rows)
 
             const tableColumns = computed(() => {
                 if (props.columns) {
@@ -145,7 +147,7 @@
                     return {}
                 }
 
-                return Object.entries(props.rows[0]).reduce((cols, [key, _]) => ({ ...cols, [key]: key }), {})
+                return Object.keys(props.rows[0]).reduce((cols, key) => ({ ...cols, [key]: key }), {})
             })
 
             const paginatedRowIndex = computed(() => showPagination.value ? tableQuery.value.per_page * (tableQuery.value.page - 1) : 0)

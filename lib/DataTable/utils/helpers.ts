@@ -1,4 +1,6 @@
-export const debounce = (callback: (...args) => void, wait = 400) => {
+type FunctionType = (...args) => void
+
+export const debounce = (callback: FunctionType, wait = 400): FunctionType => {
     let timeout: number
 
     return (...args) => {

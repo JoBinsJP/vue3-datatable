@@ -4,3 +4,4 @@ obj
 *.*
 !*.css
 !*.scss
+dist

@@ -8,9 +8,12 @@
 </template>
 
 <script lang="ts">
-    import { computed } from "vue"
+    import {
+        computed,
+        defineComponent,
+    } from "vue"
 
-    export default {
+    export default defineComponent({
         name: "PaginationLink",
 
         props: {
@@ -33,5 +36,5 @@
 
             return { linkClasses }
         },
-    }
+    })
 </script>

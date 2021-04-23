@@ -1,38 +1,26 @@
 {
-  "compilerOptions": {
-    "target":                           "esnext",
-    "module":                           "esnext",
-    "moduleResolution":                 "node",
-    "strict":                           true,
-    "forceConsistentCasingInFileNames": true,
-    "allowSyntheticDefaultImports":     true,
-    "strictFunctionTypes":              false,
-    "jsx":                              "preserve",
-    "baseUrl":                          ".",
-    "allowJs":                          false,
-    "sourceMap":                        true,
-    "esModuleInterop":                  true,
-    "resolveJsonModule":                true,
-    "noUnusedLocals":                   true,
-    "noUnusedParameters":               true,
-    "importHelpers":                    true,
-    "noImplicitAny":                    false,
-    "skipLibCheck":                     false,
-    "lib":                              [
-      "esnext",
-      "dom"
-    ],
-    "types":                            [
-      "vite/client"
-    ]
-  },
-  "include":         [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ],
-  "exclude":         [
-    "node_modules"
-  ]
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "esnext",
+        "moduleResolution": "node",
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": true,
+        "strictFunctionTypes": false,
+        "jsx": "preserve",
+        "baseUrl": ".",
+        "allowJs": false,
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "importHelpers": true,
+        "noImplicitAny": false,
+        "skipLibCheck": false,
+        "lib": ["esnext", "dom"],
+        "types": ["vite/client"]
+    },
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+    "exclude": ["node_modules"]
 }
