@@ -1,6 +1,7 @@
 <template>
     <data-table :rows="tableData"
                 :pagination="pagination"
+                :query="query"
                 striped
                 sn
                 filter
@@ -53,8 +54,10 @@
 
         setup() {
             const tableData = ref([])
-
             const pagination = ref({})
+            const query = ref({
+                search: "test",
+            })
 
             const loadData = async (query) => {
                 const { data: { data, totalPassengers } } = await axios.get("https://api.instantwebtools.net/v1/passenger", {
@@ -73,7 +76,7 @@
 
             const formatUrl = (url: string) => url.startsWith("http") ? url : `http://${url}`
 
-            return { tableData, pagination, loadData, formatAirline, formatUrl }
+            return { tableData, pagination, query, loadData, formatAirline, formatUrl }
         },
     })
 
