@@ -7,11 +7,10 @@
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build",
         "serve": "vite preview",
-        "lint": "yarn lint:prettier && yarn lint:ts && yarn lint:style && yarn lint:markup",
+        "lint": "yarn lint:prettier && yarn lint:ts && yarn lint:style",
         "lint:ts": "eslint --ext .ts,vue --ignore-path .gitignore .",
         "lint:style": "stylelint .",
-        "lint:prettier": "prettier -w -u .",
-        "lint:markup": "vti diagnostics"
+        "lint:prettier": "prettier -w -u ."
     },
     "peerDependencies": {
         "vue": "^3.0.5"
@@ -41,7 +40,6 @@
         "tailwindcss": "^2.1.1",
         "typescript": "^4.2.4",
         "vite": "^2.1.5",
-        "vti": "^0.1.1",
         "vue": "^3.0.5",
         "vue-tsc": "^0.0.23"
     },

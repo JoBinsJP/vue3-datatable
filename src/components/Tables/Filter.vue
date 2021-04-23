@@ -3,6 +3,7 @@
                 :pagination="pagination"
                 striped
                 sn
+                filter
                 @loadData="loadData">
         <template #thead>
             <table-head>Full Name</table-head>
@@ -60,6 +61,7 @@
                     params: {
                         page: (query.page - 1) < 0 ? 0 : query.page - 1,
                         size: query.per_page,
+                        search: query.search,
                     },
                 })
 

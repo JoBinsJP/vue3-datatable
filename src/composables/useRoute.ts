@@ -2,11 +2,14 @@ import {
     computed,
     ref,
 }                        from "vue"
-import { Route }         from "../@types/Route"
+import {
+    Route,
+    UsableRoute,
+}                        from "../@types/Route"
 import NotFoundComponent from "../components/NotFoundComponent.vue"
 import routes            from "../routes"
 
-const useRoute = () => {
+const useRoute = (): UsableRoute => {
     const routeUrl = ref(window.location.pathname)
 
     const currentRoute = computed<Route>(() => routes[routeUrl.value] || {
