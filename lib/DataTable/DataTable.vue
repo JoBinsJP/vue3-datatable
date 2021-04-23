@@ -7,7 +7,7 @@
                     <div class="w-64">
                         <label for="email" class="sr-only">Search</label>
                         <div class="relative rounded-md shadow-sm">
-                            <input :value="tableQuery?.search"
+                            <input :value="tableQuery.search"
                                    type="search"
                                    name="search"
                                    class="focus:ring-0 block w-full pr-10 sm:text-sm border-gray-300 rounded-md"
@@ -28,20 +28,20 @@
                     <div v-if="showPagination" class="pagination-wrapper flex bg-white items-center">
                         <pagination class="flex-1"
                                     :total="totalData"
-                                    :current-page="tableQuery?.page"
-                                    :per-page="parseInt(tableQuery?.per_page.toString())"
+                                    :current-page="tableQuery.page"
+                                    :per-page="parseInt(tableQuery.per_page.toString())"
                                     @changed="handlePageChange"/>
 
                         <div class="pr-4">
                             <label for="location" class="sr-only">Per page</label>
-                            <select :value="tableQuery?.per_page"
+                            <select :value="tableQuery.per_page"
                                     name="per_page"
                                     class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 sm:text-sm rounded-md"
                                     @input="handleOnChange">
                                 <option v-for="size in perPageOptions"
                                         :key="`per_page_${size}`"
                                         :value="size"
-                                        :selected="size === tableQuery?.per_page"
+                                        :selected="size === tableQuery.per_page"
                                         v-text="size"/>
                             </select>
                         </div>
@@ -81,7 +81,10 @@
                     </table>
 
                     <div v-if="showPagination" class="pagination-wrapper">
-                        <pagination :total="totalData" :current-page="tableQuery?.page" :per-page="parseInt(tableQuery?.per_page.toString())" @changed="handlePageChange"/>
+                        <pagination :total="totalData"
+                                    :current-page="tableQuery.page"
+                                    :per-page="parseInt(tableQuery.per_page.toString())"
+                                    @changed="handlePageChange"/>
                     </div>
                 </div>
 
