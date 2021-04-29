@@ -1,7 +1,7 @@
 <template>
     <nav class="flex-1 px-2 bg-white space-y-1">
         <div class="mt-8">
-            <template v-for="(menu, menuIndex) in menus" :key="menuIndex">
+            <div v-for="(menu, menuIndex) in menus" :key="menuIndex">
                 <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" v-text="menu.group"/>
 
                 <div class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
@@ -16,7 +16,7 @@
                         <span class="truncate" v-text="menuItem.label"/>
                     </v-link>
                 </div>
-            </template>
+            </div>
         </div>
     </nav>
 </template>
@@ -25,9 +25,10 @@
     import {
         defineComponent,
         inject,
-    }             from "vue"
-    import routes from "../../routes"
-    import VLink  from "../VLink.vue"
+    }                      from "vue"
+    import { UsableRoute } from "../../@types/Route"
+    import routes          from "../../routes"
+    import VLink           from "../VLink.vue"
 
     export default defineComponent({
         name: "Menus",
@@ -46,7 +47,7 @@
                 },
             ]
 
-            const { isActive } = inject("route")
+            const { isActive } = inject<UsableRoute>("route") as UsableRoute
 
             const colors = ["bg-black", "bg-gray-500", "bg-red-500", "bg-yellow-500", "bg-green-500", "bg-blue-500", "bg-indigo-500", "bg-purple-500", "bg-pink-500"]
             const getRandomColor = () => colors[Math.floor(Math.random() * (colors.length - 1))]

@@ -1,27 +1,31 @@
-# Vue 3 + Typescript + Vite
+# DataTable - Vue3 Component
 
-This template should help get you started developing with Vue 3 and Typescript in Vite.
+> Basic DataTable component for Vue3 in typescript and Composition API. It has basic functionality such as Filter/Search, pagination etc.
 
-## Recommended IDE Setup
+[![NPM](https://img.shields.io/npm/v/nepali-datepicker-reactjs.svg)](https://www.npmjs.com/package/nepali-datepicker-reactjs)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Build](https://img.shields.io/travis/puncoz-official/nepali-datepicker-reactjs?logo=travis)](https://travis-ci.org/puncoz-official/nepali-datepicker-reactjs)
 
-[VSCode](https://code.visualstudio.com/) + [Vetur](https://marketplace.visualstudio.com/items?itemName=octref.vetur). Make sure to enable `vetur.experimental.templateInterpolationService` in settings!
+## [Demo](https://puncoz-official.github.io/nepali-datepicker-reactjs/)
 
-### If Using `<script setup>`
+![DataTable Demo](demo.png)
 
-[`<script setup>`](https://github.com/vuejs/rfcs/pull/227) is a feature that is currently in RFC stage. To get proper IDE support for the syntax, use [Volar](https://marketplace.visualstudio.com/items?itemName=johnsoncodehk.volar) instead of Vetur (and disable Vetur).
+## Install
 
-## Type Support For `.vue` Imports in TS
+```bash
+npm install --save @jobins/vue3-datatable
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can use the following:
+or,
 
-### If Using Volar
+yarn add @jobins/vue3-datatable
+```
 
-Run `Volar: Switch TS Plugin on/off` from VSCode command palette.
+## Usage
 
-### If Using Vetur
+```vue
+    <data-table :rows="data"/>
+```
 
-1. Install and add `@vuedx/typescript-plugin-vue` to the [plugins section](https://www.typescriptlang.org/tsconfig#plugins) in `tsconfig.json`
-2. Delete `src/shims-vue.d.ts` as it is no longer needed to provide module info to Typescript
-3. Open `src/main.ts` in VSCode
-4. Open the VSCode command palette
-5. Search and run "Select TypeScript version" -> "Use workspace version"
+## License
+
+MIT © [https://github.com/JoBinsJP/vue3-datatable](https://github.com/JoBinsJP/vue3-datatable)
