@@ -2,22 +2,22 @@
 
 > Basic DataTable component for Vue3 in typescript and Composition API. It has basic functionality such as Filter/Search, pagination etc.
 
-[![NPM](https://img.shields.io/npm/v/nepali-datepicker-reactjs.svg)](https://www.npmjs.com/package/nepali-datepicker-reactjs)
+[![NPM](https://img.shields.io/npm/v/@jobinsjp/vue3-datatable.svg)](https://www.npmjs.com/package/@jobinsjp/vue3-datatable)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-[![Build](https://img.shields.io/travis/puncoz-official/nepali-datepicker-reactjs?logo=travis)](https://travis-ci.org/puncoz-official/nepali-datepicker-reactjs)
+[![Build](https://img.shields.io/travis/JoBinsJP/vue3-datatable?logo=travis)](https://travis-ci.org/JoBinsJP/vue3-datatable)
 
-## [Demo](https://puncoz-official.github.io/nepali-datepicker-reactjs/)
+## [Demo](https://JoBinsJP.github.io/vue3-datatable)
 
 ![DataTable Demo](demo.png)
 
 ## Install
 
 ```bash
-npm install --save @jobins/vue3-datatable
+npm install --save @jobinsjp/vue3-datatable
 
 or,
 
-yarn add @jobins/vue3-datatable
+yarn add @jobinsjp/vue3-datatable
 ```
 
 ## Usage
