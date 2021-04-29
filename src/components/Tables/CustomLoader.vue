@@ -7,6 +7,10 @@
                 sn
                 filter
                 @loadData="loadData">
+        <template #loading>
+            <div class="absolute w-full h-full flex justify-center z-10 py-12">Loading....</div>
+        </template>
+
         <template #thead>
             <table-head>Full Name</table-head>
             <table-head>Trips</table-head>
@@ -50,7 +54,7 @@
         TableHead,
     }            from "../../../lib/DataTable"
 
-    const Filter = defineComponent({
+    const CustomLoader = defineComponent({
         components: { TableBody, TableHead, DataTable },
 
         setup() {
@@ -84,5 +88,5 @@
         },
     })
 
-    export default Filter
+    export default CustomLoader
 </script>
