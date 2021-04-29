@@ -9,7 +9,8 @@
     import {
         defineComponent,
         inject,
-    } from "vue"
+    }                      from "vue"
+    import { UsableRoute } from "../@types/Route"
 
     export default defineComponent({
         name: "VLink",
@@ -19,7 +20,7 @@
         },
 
         setup() {
-            const { setRoute } = inject("route")
+            const { setRoute } = inject("route") as UsableRoute
 
             return { setRoute }
         },

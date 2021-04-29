@@ -1,0 +1,11 @@
+{
+  "**/*.{ts,vue}":       [
+    "yarn lint:ts --fix"
+  ],
+  "**/*.{css,scss,vue}": [
+    "yarn lint:style --fix"
+  ],
+  "*":                   [
+    "yarn lint:prettier"
+  ]
+}
