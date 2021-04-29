@@ -1,5 +1,6 @@
 import { Routes }      from "./@types/Route"
 import Basic           from "./components/Tables/Basic.vue"
+import CustomLoader    from "./components/Tables/CustomLoader.vue"
 import CustomRowColumn from "./components/Tables/CustomRowColumn.vue"
 import Filter          from "./components/Tables/Filter.vue"
 import Paginated       from "./components/Tables/Paginated.vue"
@@ -39,6 +40,12 @@ const routes: Routes = {
         title: "Filter",
         group: "table",
         component: Filter,
+    },
+
+    "/table/loading": {
+        title: "Custom Loader",
+        group: "table",
+        component: CustomLoader,
     },
 }
 

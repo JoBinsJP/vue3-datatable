@@ -24,7 +24,11 @@
                     </div>
                 </div>
 
-                <div class="table-wrapper shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <div class="table-wrapper relative shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                    <slot  v-if="loading" name="loading">
+                        <Loading/>
+                    </slot>
+
                     <div v-if="showPagination" class="pagination-wrapper flex bg-white items-center">
                         <pagination class="flex-1"
                                     :total="totalData"
@@ -105,6 +109,7 @@
     import { PaginationProps } from "./@types/PaginationProps"
     import { QueryProps }      from "./@types/QueryProps"
     import { TableQuery }      from "./@types/TableQuery"
+    import Loading             from "./Components/Loading.vue"
     import Pagination          from "./Components/Pagination.vue"
     import TableBody           from "./Components/TableBody.vue"
     import TableHead           from "./Components/TableHead.vue"
@@ -115,7 +120,7 @@
     const PER_PAGE_OPTIONS = [5, 10, 15, 25, 50, 75, 100]
 
     const DataTable = defineComponent({
-        components: { Pagination, TableBody, TableHead },
+        components: { Loading, Pagination, TableBody, TableHead },
 
         props: {
             rows: { type: Array, required: true },
@@ -124,6 +129,7 @@
             striped: { type: Boolean, required: false, default: false },
             sn: { type: Boolean, required: false, default: false },
             filter: { type: Boolean, required: false, default: false },
+            loading: { type: Boolean, required: false, default: false },
             perPageOptions: { type: Array as PropType<number[]>, required: false, default: () => PER_PAGE_OPTIONS },
             query: { type: Object as PropType<QueryProps>, required: false, default: () => ({}) },
         },
