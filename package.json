@@ -13,7 +13,7 @@
         "url": "https://github.com/puncoz-official"
     },
     "repository": "https://github.com/JoBinsJP/vue3-datatable.git",
-    "homepage": "https://JoBinsJP.github.io/vue3-datatable",
+    "homepage": "https://vue3-datatable.netlify.app/",
     "private": false,
     "files": [
         "dist"
@@ -42,7 +42,7 @@
         "dist": "vue-tsc --noEmit && vite build --config vite.package.config.ts",
         "build": "vue-tsc --noEmit && vite build --config vite.demo.config.ts",
         "predeploy": "yarn build",
-        "deploy": "gh-pages -d build",
+        "deploy": "gh-pages -d build --remote jobins -b demo",
         "serve": "vite preview",
         "lint": "yarn lint:prettier && yarn lint:ts && yarn lint:style",
         "lint:ts": "eslint --ext .ts,vue --ignore-path .gitignore .",

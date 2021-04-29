@@ -6,7 +6,7 @@
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 [![Build](https://img.shields.io/travis/JoBinsJP/vue3-datatable?logo=travis)](https://travis-ci.org/JoBinsJP/vue3-datatable)
 
-## [Demo](https://JoBinsJP.github.io/vue3-datatable)
+## [Demo](https://vue3-datatable.netlify.app/)
 
 ![DataTable Demo](demo.png)
 
