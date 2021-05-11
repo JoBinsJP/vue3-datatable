@@ -34,7 +34,6 @@
     },
     "license": "MIT",
     "scripts": {
-        "preinstall": "node ./preinstall.js",
         "clean": "rimraf dist build npm-debug.log* yarn-error.log*",
         "clean:modules": "rimraf node_modules",
         "dev": "vite",
