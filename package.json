@@ -1,6 +1,6 @@
 {
     "name": "@jobinsjp/vue3-datatable",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "DataTable component with basic pagination, search filters etc for Vue3",
     "keywords": [
         "datatable",
@@ -36,7 +36,7 @@
     "scripts": {
         "clean": "rimraf dist build npm-debug.log* yarn-error.log*",
         "clean:modules": "rimraf node_modules",
-        "dev": "vite",
+        "dev": "vite --config vite.demo.config.ts",
         "predist": "yarn clean && yarn lint",
         "dist": "vue-tsc --noEmit && vite build --config vite.package.config.ts",
         "build": "vue-tsc --noEmit && vite build --config vite.demo.config.ts",
@@ -57,7 +57,7 @@
         "@types/node": "^15.0.1",
         "@typescript-eslint/eslint-plugin": "^4.21.0",
         "@typescript-eslint/parser": "^4.21.0",
-        "@vitejs/plugin-vue": "^1.2.1",
+        "@vitejs/plugin-vue": "^1.2.2",
         "@vue/compiler-sfc": "^3.0.5",
         "@vue/eslint-config-prettier": "^6.0.0",
         "@vue/eslint-config-typescript": "^7.0.0",

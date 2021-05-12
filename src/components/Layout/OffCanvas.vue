@@ -1,42 +1,43 @@
 <template>
-    <div v-show="show" class="fixed inset-0 flex z-40 md:hidden" role="dialog" aria-modal="true">
+    <div v-show="show" class="dt-fixed dt-inset-0 dt-flex dt-z-40 md:dt-hidden" role="dialog" aria-modal="true">
         <transition
-            enter-active-class="transition-opacity ease-linear duration-300"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-            leave-active-class="transition-opacity ease-linear duration-300"
-            leave-from-class="opacity-100"
-            leave-to-class="opacity-0">
-            <div v-show="show" class="fixed inset-0 bg-gray-600 bg-opacity-75" aria-hidden="true"></div>
+            enter-active-class="dt-transition-opacity dt-ease-linear dt-duration-300"
+            enter-from-class="dt-opacity-0"
+            enter-to-class="dt-opacity-100"
+            leave-active-class="dt-transition-opacity dt-ease-linear dt-duration-300"
+            leave-from-class="dt-opacity-100"
+            leave-to-class="dt-opacity-0">
+            <div v-show="show" class="dt-fixed dt-inset-0 dt-bg-gray-600 dt-bg-opacity-75" aria-hidden="true"></div>
         </transition>
 
         <transition
-            enter-active-class="transition ease-in-out duration-300 transform"
-            enter-from-class="-translate-x-full"
-            enter-to-class="translate-x-0"
-            leave-active-class="transition ease-in-out duration-300 transform"
-            leave-from-class="translate-x-0"
-            leave-to-class="-translate-x-full">
-            <div v-show="show" class="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+            enter-active-class="dt-transition dt-ease-in-out dt-duration-300 dt-transform"
+            enter-from-class="dt--translate-x-full"
+            enter-to-class="dt-translate-x-0"
+            leave-active-class="dt-transition dt-ease-in-out dt-duration-300 dt-transform"
+            leave-from-class="dt-translate-x-0"
+            leave-to-class="dt--translate-x-full">
+            <div v-show="show" class="dt-relative dt-flex-1 dt-flex dt-flex-col dt-max-w-xs dt-w-full dt-bg-white">
                 <transition
-                    enter-active-class="ease-in-out duration-300"
-                    enter-from-class="opacity-0"
-                    enter-to-class="opacity-100"
-                    leave-active-class="ease-in-out duration-300"
-                    leave-from-class="opacity-100"
-                    leave-to-class="opacity-0">
-                    <div v-show="show" class="absolute top-0 right-0 -mr-12 pt-2">
-                        <button class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                    enter-active-class="dt-ease-in-out dt-duration-300"
+                    enter-from-class="dt-opacity-0"
+                    enter-to-class="dt-opacity-100"
+                    leave-active-class="dt-ease-in-out dt-duration-300"
+                    leave-from-class="dt-opacity-100"
+                    leave-to-class="dt-opacity-0">
+                    <div v-show="show" class="dt-absolute dt-top-0 dt-right-0 dt--mr-12 dt-pt-2">
+                        <button class="dt-ml-1 dt-flex dt-items-center dt-justify-center dt-h-10 dt-w-10 dt-rounded-full
+                                        focus:dt-outline-none focus:dt-ring-2 focus:dt-ring-inset focus:dt-ring-white"
                                 @click.prevent="$emit('close')">
-                            <span class="sr-only">Close sidebar</span>
-                            <outline-close-icon class="text-white"/>
+                            <span class="dt-sr-only">Close sidebar</span>
+                            <outline-close-icon class="dt-text-white"/>
                         </button>
                     </div>
                 </transition>
 
-                <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-                    <div class="flex-shrink-0 flex items-center px-4">
-                        <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
+                <div class="dt-flex-1 dt-h-0 dt-pt-5 dt-pb-4 dt-overflow-y-auto">
+                    <div class="dt-flex-shrink-0 dt-flex dt-items-center dt-px-4">
+                        <img class="dt-h-8 dt-w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
                     </div>
 
                     <menus/>
@@ -44,7 +45,7 @@
             </div>
         </transition>
 
-        <div class="flex-shrink-0 w-14">
+        <div class="dt-flex-shrink-0 dt-w-14">
             <!-- Force sidebar to shrink to fit close icon -->
         </div>
     </div>

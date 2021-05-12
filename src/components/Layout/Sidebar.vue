@@ -1,10 +1,10 @@
 <template>
-    <div class="hidden md:flex md:flex-shrink-0">
-        <div class="flex flex-col w-64">
-            <div class="flex flex-col h-0 flex-1 border-r border-gray-200 bg-white">
-                <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-                    <div class="flex items-center flex-shrink-0 px-4">
-                        <h1 class="text-3xl font-extralight">Vue3 <span class="font-light">DataTable</span></h1>
+    <div class="dt-hidden md:dt-flex md:dt-flex-shrink-0">
+        <div class="dt-flex dt-flex-col dt-w-64">
+            <div class="dt-flex dt-flex-col dt-h-0 dt-flex-1 dt-border-r dt-border-gray-200 dt-bg-white">
+                <div class="dt-flex-1 dt-flex dt-flex-col dt-pt-5 dt-pb-4 dt-overflow-y-auto">
+                    <div class="dt-flex dt-items-center dt-flex-shrink-0 dt-px-4">
+                        <h1 class="dt-text-3xl dt-font-extralight">Vue3 <span class="dt-font-light">DataTable</span></h1>
                     </div>
 
                     <menus/>

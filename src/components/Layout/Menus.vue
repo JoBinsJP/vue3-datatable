@@ -1,19 +1,19 @@
 <template>
-    <nav class="flex-1 px-2 bg-white space-y-1">
-        <div class="mt-8">
+    <nav class="dt-flex-1 dt-px-2 dt-bg-white dt-space-y-1">
+        <div class="dt-mt-8">
             <div v-for="(menu, menuIndex) in menus" :key="menuIndex">
-                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" v-text="menu.group"/>
+                <h3 class="dt-px-3 dt-text-xs dt-font-semibold dt-text-gray-500 dt-uppercase dt-tracking-wider" v-text="menu.group"/>
 
-                <div class="mt-1 space-y-1" role="group" aria-labelledby="teams-headline">
+                <div class="dt-mt-1 dt-space-y-1" role="group">
                     <v-link v-for="(menuItem, menuItemIndex) in menu.items"
                             :key="menuItemIndex"
                             :href="menuItem.url"
-                            :class="isActive(menuItem.url) ? 'bg-gray-100 text-gray-900' : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'"
-                            class="group flex items-center px-3 py-2 text-sm font-medium rounded-md">
-                        <span class="w-2.5 h-2.5 mr-4 rounded-full"
+                            :class="isActive(menuItem.url) ? 'dt-bg-gray-100 dt-text-gray-900' : 'dt-text-gray-700 hover:dt-text-gray-900 hover:dt-bg-gray-50'"
+                            class="dt-group dt-flex dt-items-center dt-px-3 dt-py-2 dt-text-sm dt-font-medium dt-rounded-md">
+                        <span class="dt-w-2.5 dt-h-2.5 dt-mr-4 dt-rounded-full"
                               :class="getRandomColor()"
                               aria-hidden="true"/>
-                        <span class="truncate" v-text="menuItem.label"/>
+                        <span class="dt-truncate" v-text="menuItem.label"/>
                     </v-link>
                 </div>
             </div>
@@ -49,7 +49,7 @@
 
             const { isActive } = inject<UsableRoute>("route") as UsableRoute
 
-            const colors = ["bg-black", "bg-gray-500", "bg-red-500", "bg-yellow-500", "bg-green-500", "bg-blue-500", "bg-indigo-500", "bg-purple-500", "bg-pink-500"]
+            const colors = ["dt-bg-black", "dt-bg-gray-500", "dt-bg-red-500", "dt-bg-yellow-500", "dt-bg-green-500", "dt-bg-blue-500", "dt-bg-indigo-500", "dt-bg-purple-500", "dt-bg-pink-500"]
             const getRandomColor = () => colors[Math.floor(Math.random() * (colors.length - 1))]
 
             return { menus, getRandomColor, isActive }

@@ -1,46 +1,42 @@
 <template>
-    <div class="data-table flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+    <div class="data-table dt-flex dt-flex-col">
+        <div class="dt--my-2 dt-overflow-x-auto sm:dt--mx-6 lg:dt--mx-8">
+            <div class="dt-align-middle dt-inline-block dt-min-w-full">
 
-                <div v-if="filter" class="filter-wrapper mb-2.5 w-full">
-                    <div class="w-64">
-                        <label for="email" class="sr-only">Search</label>
-                        <div class="relative rounded-md shadow-sm">
+                <div v-if="filter" class="dt-filter-wrapper dt-mb-3 dt-w-full">
+                    <div class="dt-w-64">
+                        <label for="email" class="dt-sr-only">Search</label>
+                        <div class="dt-relative dt-rounded-md dt-shadow-sm">
                             <input :value="tableQuery.search"
                                    type="search"
                                    name="search"
-                                   class="focus:ring-0 block w-full pr-10 sm:text-sm border-gray-300 rounded-md"
+                                   class="focus:dt-ring-0 dt-block dt-w-full dt-pr-10 sm:dt-text-sm dt-border-gray-300 dt-rounded-md"
                                    @input="handleOnSearchChange">
 
-                            <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                          clip-rule="evenodd"/>
-                                </svg>
+                            <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
+                                <search-icon class="dt-text-gray-400"/>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="table-wrapper relative shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                <div class="table-wrapper dt-relative dt-shadow dt-overflow-hidden dt-border-b dt-border-gray-200 sm:dt-rounded-lg">
                     <slot  v-if="loading" name="loading">
                         <Loading/>
                     </slot>
 
-                    <div v-if="showPagination" class="pagination-wrapper flex bg-white items-center">
-                        <pagination class="flex-1"
+                    <div v-if="showPagination" class="pagination-wrapper dt-flex dt-bg-white dt-items-center">
+                        <pagination class="dt-flex-1"
                                     :total="totalData"
                                     :current-page="tableQuery.page"
                                     :per-page="parseInt(tableQuery.per_page.toString())"
                                     @changed="handlePageChange"/>
 
-                        <div class="pr-4">
-                            <label for="location" class="sr-only">Per page</label>
+                        <div class="dt-pr-4">
+                            <label for="location" class="dt-sr-only">Per page</label>
                             <select :value="tableQuery.per_page"
                                     name="per_page"
-                                    class="block w-full pl-3 pr-10 py-2 text-base border-gray-300 sm:text-sm rounded-md"
+                                    class="dt-block dt-w-full dt-pl-3 dt-pr-10 dt-py-2 dt-text-base dt-border-gray-300 sm:dt-text-sm dt-rounded-md"
                                     @input="handleOnChange">
                                 <option v-for="size in perPageOptions"
                                         :key="`per_page_${size}`"
@@ -51,8 +47,8 @@
                         </div>
                     </div>
 
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
+                    <table class="dt-min-w-full dt-divide-y dt-divide-gray-200">
+                        <thead class="dt-bg-gray-50">
                             <tr>
                                 <slot v-if="sn" name="thead-sn">
                                     <table-head v-text="`S.N.`"/>
@@ -69,7 +65,7 @@
                         <tbody>
                             <tr v-for="(row, rowIndex) in tableRows"
                                 :key="`datatable-tbody-${uniqueId()}-${rowIndex}`"
-                                :class="striped && rowIndex % 2 ? 'bg-gray-50' : 'bg-white'">
+                                :class="striped && rowIndex % 2 ? 'dt-bg-gray-50' : 'dt-bg-white'">
                                 <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
                                     <table-body v-text="rowIndex + 1 + paginatedRowIndex"/>
                                 </slot>
@@ -109,6 +105,7 @@
     import { PaginationProps } from "./@types/PaginationProps"
     import { QueryProps }      from "./@types/QueryProps"
     import { TableQuery }      from "./@types/TableQuery"
+    import SearchIcon          from "./Components/Icons/SearchIcon.vue"
     import Loading             from "./Components/Loading.vue"
     import Pagination          from "./Components/Pagination.vue"
     import TableBody           from "./Components/TableBody.vue"
@@ -120,7 +117,7 @@
     const PER_PAGE_OPTIONS = [5, 10, 15, 25, 50, 75, 100]
 
     const DataTable = defineComponent({
-        components: { Loading, Pagination, TableBody, TableHead },
+        components: { SearchIcon, Loading, Pagination, TableBody, TableHead },
 
         props: {
             rows: { type: Array, required: true },
