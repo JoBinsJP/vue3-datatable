@@ -19,18 +19,18 @@
             <table-body v-text="row.trips ? row.trips.toLocaleString() : ''"/>
 
             <table-body>
-                <div class="flex items-center">
-                    <div class="flex-shrink-0 h-16 w-16 inline-flex items-center">
-                        <img class="rounded-full"
+                <div class="dt-flex dt-items-center">
+                    <div class="dt-flex-shrink-0 dt-h-16 dt-w-16 dt-inline-flex dt-items-center">
+                        <img class="dt-rounded-full"
                              :src="formatAirline(row.airline).logo"
                              :alt="formatAirline(row.airline).name">
                     </div>
-                    <div class="ml-4">
+                    <div class="dt-ml-4">
                         <a :href="formatUrl(formatAirline(row.airline).website)">
-                            <p class="text-sm font-medium text-gray-900" v-text="formatAirline(row.airline).name"/>
+                            <p class="dt-text-sm dt-font-medium dt-text-gray-900" v-text="formatAirline(row.airline).name"/>
                         </a>
-                        <p class="text-sm text-gray-400" v-text="formatAirline(row.airline).slogan"/>
-                        <p class="text-sm text-gray-500" v-text="formatAirline(row.airline).head_quaters"/>
+                        <p class="dt-text-sm dt-text-gray-400" v-text="formatAirline(row.airline).slogan"/>
+                        <p class="dt-text-sm dt-text-gray-500" v-text="formatAirline(row.airline).head_quaters"/>
                     </div>
                 </div>
             </table-body>

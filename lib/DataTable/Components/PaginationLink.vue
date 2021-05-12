@@ -1,6 +1,6 @@
 <template>
     <a href="#"
-       class="relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+       class="dt-relative dt-inline-flex dt-items-center dt-px-4 dt-py-2 dt-border dt-text-sm dt-font-medium"
        :class="linkClasses"
        v-on="{...$attrs}">
         <slot/>
@@ -24,14 +24,14 @@
         setup(props) {
             const linkClasses = computed(() => {
                 if (props.active) {
-                    return "bg-gray-200 border-gray-300 text-gray-800 hover:bg-gray-200"
+                    return "dt-bg-gray-200 dt-border-gray-300 dt-text-gray-800 hover:dt-bg-gray-200"
                 }
 
                 if (props.disabled) {
-                    return "cursor-not-allowed text-gray-400"
+                    return "dt-cursor-not-allowed dt-text-gray-400"
                 }
 
-                return "border-gray-300 bg-white text-gray-500 hover:bg-gray-50"
+                return "dt-border-gray-300 dt-bg-white dt-text-gray-500 hover:dt-bg-gray-50"
             })
 
             return { linkClasses }

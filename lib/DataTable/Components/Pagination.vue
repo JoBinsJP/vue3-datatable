@@ -1,29 +1,29 @@
 <template>
-    <div v-if="totalPages" class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6">
-        <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+    <div v-if="totalPages" class="dt-bg-white dt-px-4 dt-py-3 dt-flex dt-items-center dt-justify-between dt-border-t dt-border-gray-200 sm:dt-px-6">
+        <div class="dt-hidden sm:dt-flex-1 sm:dt-flex sm:dt-items-center sm:dt-justify-between">
             <div v-show="total">
-                <p class="text-sm text-gray-700">
+                <p class="dt-text-sm dt-text-gray-700">
                     <slot name="pagination-info" :currentStart="currentStart" :currentEnd="currentEnd" :total="total">
                         Showing
-                        <span class="font-medium" v-text="currentStart"/>
+                        <span class="dt-font-medium" v-text="currentStart"/>
                         to
-                        <span class="font-medium" v-text="currentEnd"/>
+                        <span class="dt-font-medium" v-text="currentEnd"/>
                         of
-                        <span class="font-medium" v-text="total"/>
+                        <span class="dt-font-medium" v-text="total"/>
                         results.
                     </slot>
                 </p>
             </div>
 
             <div v-if="totalPages > 1">
-                <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                    <pagination-link :disabled="isInFirstPage" class="rounded-l-md" @click.prevent="gotoFirstPage">
-                        <span class="sr-only">Go to first</span>
+                <nav class="dt-relative dt-z-0 dt-inline-flex dt-rounded-md dt-shadow-sm dt--space-x-px" aria-label="Pagination">
+                    <pagination-link :disabled="isInFirstPage" class="dt-rounded-l-md" @click.prevent="gotoFirstPage">
+                        <span class="dt-sr-only">Go to first</span>
                         &laquo;
                     </pagination-link>
 
                     <pagination-link :disabled="isInFirstPage" @click.prevent="gotoPreviousPage">
-                        <span class="sr-only">Previous</span>
+                        <span class="dt-sr-only">Previous</span>
                         &lsaquo;
                     </pagination-link>
 
@@ -56,12 +56,12 @@
                     </template>
 
                     <pagination-link :disabled="isInLastPage" @click.prevent="gotoNextPage">
-                        <span class="sr-only">Next</span>
+                        <span class="dt-sr-only">Next</span>
                         &rsaquo;
                     </pagination-link>
 
-                    <pagination-link :disabled="isInLastPage" class="rounded-r-md" @click.prevent="gotoLastPage">
-                        <span class="sr-only">Go to Last</span>
+                    <pagination-link :disabled="isInLastPage" class="dt-rounded-r-md" @click.prevent="gotoLastPage">
+                        <span class="dt-sr-only">Go to Last</span>
                         &raquo;
                     </pagination-link>
                 </nav>

@@ -1,7 +1,7 @@
 <template>
-    <div class="spinner absolute h-full w-full flex justify-center">
-        <div class="spinner-item absolute w-20 h-20 rounded-full"></div>
-        <div class="spinner-item absolute w-20 h-20 rounded-full"></div>
+    <div class="spinner dt-absolute dt-h-full dt-w-full dt-flex dt-justify-center">
+        <div class="spinner-item dt-absolute dt-w-20 dt-h-20 dt-rounded-full"></div>
+        <div class="spinner-item dt-absolute dt-w-20 dt-h-20 dt-rounded-full"></div>
     </div>
 </template>
 
