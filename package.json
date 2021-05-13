@@ -21,12 +21,6 @@
     "main": "./dist/vue3-datatable.umd.js",
     "module": "./dist/vue3-datatable.es.js",
     "style": "./dist/style.css",
-    "exports": {
-        ".": {
-            "import": "./dist/vue3-datatable.es.js",
-            "require": "./dist/vue3-datatable.umd.js"
-        }
-    },
     "source": "src/main.ts",
     "engines": {
         "node": ">=14",

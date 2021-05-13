@@ -1,38 +1,38 @@
 <template>
     <div class="data-table dt-flex dt-flex-col">
-        <div class="dt--my-2 dt-overflow-x-auto sm:dt--mx-6 lg:dt--mx-8">
-            <div class="dt-align-middle dt-inline-block dt-min-w-full">
+        <div class="dt-align-middle dt-min-w-full">
 
-                <div v-if="filter" class="dt-filter-wrapper dt-mb-3 dt-w-full">
-                    <div class="dt-w-64">
-                        <label for="email" class="dt-sr-only">Search</label>
-                        <div class="dt-relative dt-rounded-md dt-shadow-sm">
-                            <input :value="tableQuery.search"
-                                   type="search"
-                                   name="search"
-                                   class="focus:dt-ring-0 dt-block dt-w-full dt-pr-10 sm:dt-text-sm dt-border-gray-300 dt-rounded-md"
-                                   @input="handleOnSearchChange">
+            <div v-if="filter" class="dt-filter-wrapper dt-mb-3 dt-w-full">
+                <div class="dt-w-64">
+                    <label for="email" class="dt-sr-only">Search</label>
+                    <div class="dt-relative dt-rounded-md dt-shadow-sm">
+                        <input :value="tableQuery.search"
+                               type="search"
+                               name="search"
+                               class="focus:dt-ring-0 dt-block dt-w-full dt-pr-10 sm:dt-text-sm dt-border-gray-300 dt-rounded-md"
+                               @input="handleOnSearchChange">
 
-                            <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
-                                <search-icon class="dt-text-gray-400"/>
-                            </div>
+                        <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
+                            <search-icon class="dt-text-gray-400"/>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="table-wrapper dt-relative dt-shadow dt-overflow-hidden dt-border-b dt-border-gray-200 sm:dt-rounded-lg">
-                    <slot  v-if="loading" name="loading">
-                        <Loading/>
-                    </slot>
+            <div class="table-wrapper dt-relative dt-shadow dt-overflow-hidden dt-border-b dt-border-gray-200 sm:dt-rounded-lg">
+                <slot v-if="loading" name="loading">
+                    <Loading/>
+                </slot>
 
-                    <div v-if="showPagination" class="pagination-wrapper dt-flex dt-bg-white dt-items-center">
-                        <pagination class="dt-flex-1"
-                                    :total="totalData"
-                                    :current-page="tableQuery.page"
-                                    :per-page="parseInt(tableQuery.per_page.toString())"
-                                    @changed="handlePageChange"/>
+                <div v-if="showPagination" class="pagination-wrapper md:dt-flex smdt-flex-col dt-bg-white dt-items-center">
+                    <pagination class="dt-flex-1"
+                                :total="totalData"
+                                :current-page="tableQuery.page"
+                                :per-page="parseInt(tableQuery.per_page.toString())"
+                                @changed="handlePageChange"/>
 
-                        <div class="dt-pr-4">
+                    <div class="dt-pr-4 dt-w-full dt-pb-3 dt-flex dt-justify-end sm:dt-pr-6 sm:dt-pb-0 sm:dt-w-auto">
+                        <div class="">
                             <label for="location" class="dt-sr-only">Per page</label>
                             <select :value="tableQuery.per_page"
                                     name="per_page"
@@ -46,7 +46,9 @@
                             </select>
                         </div>
                     </div>
+                </div>
 
+                <div class="table-container dt-overflow-auto">
                     <table class="dt-min-w-full dt-divide-y dt-divide-gray-200">
                         <thead class="dt-bg-gray-50">
                             <tr>
@@ -79,16 +81,16 @@
                             </tr>
                         </tbody>
                     </table>
-
-                    <div v-if="showPagination" class="pagination-wrapper">
-                        <pagination :total="totalData"
-                                    :current-page="tableQuery.page"
-                                    :per-page="parseInt(tableQuery.per_page.toString())"
-                                    @changed="handlePageChange"/>
-                    </div>
                 </div>
 
+                <div v-if="showPagination" class="pagination-wrapper">
+                    <pagination :total="totalData"
+                                :current-page="tableQuery.page"
+                                :per-page="parseInt(tableQuery.per_page.toString())"
+                                @changed="handlePageChange"/>
+                </div>
             </div>
+
         </div>
     </div>
 </template>

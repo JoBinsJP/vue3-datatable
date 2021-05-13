@@ -4,6 +4,7 @@ import CustomLoader    from "./components/Tables/CustomLoader.vue"
 import CustomRowColumn from "./components/Tables/CustomRowColumn.vue"
 import Filter          from "./components/Tables/Filter.vue"
 import Paginated       from "./components/Tables/Paginated.vue"
+import Responsive      from "./components/Tables/Responsive.vue"
 import Striped         from "./components/Tables/Striped.vue"
 
 const routes: Routes = {
@@ -46,6 +47,12 @@ const routes: Routes = {
         title: "Custom Loader",
         group: "table",
         component: CustomLoader,
+    },
+
+    "/table/responsive": {
+        title: "Responsive",
+        group: "table",
+        component: Responsive,
     },
 }
 

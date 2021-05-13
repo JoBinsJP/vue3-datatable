@@ -18,13 +18,13 @@
 
             <main class="dt-flex-1 dt-relative dt-z-0 dt-overflow-y-auto focus:dt-outline-none" tabindex="0">
                 <div class="dt-py-6">
-                    <div class="dt-max-w-7xl dt-mx-auto dt-px-4 sm:dt-px-6 md:dt-px-8">
+                    <div class="dt-max-w-full dt-px-4 sm:dt-px-6 md:dt-px-8">
                         <h1 class="dt-text-2xl dt-font-semibold dt-text-gray-900" v-text="title"/>
                     </div>
 
-                    <div class="dt-max-w-7xl dt-mx-auto dt-px-4 sm:dt-px-6 md:dt-px-8">
+                    <div class="dt-max-w-full dt-px-4 sm:dt-px-6 md:dt-px-8">
                         <!-- Replace with your content -->
-                        <div class="dt-p-8">
+                        <div class="dt-py-8">
                             <slot/>
                         </div>
                         <!-- /End replace -->

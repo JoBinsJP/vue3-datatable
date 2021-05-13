@@ -28,17 +28,18 @@
                     </pagination-link>
 
                     <template v-if="showDots('left')">
-                        <pagination-link :disabled="isInFirstPage" :active="isInFirstPage" @click.prevent="gotoFirstPage">
+                        <pagination-link class="dt-block sm:dt-hidden" :disabled="isInFirstPage" :active="isInFirstPage" @click.prevent="gotoFirstPage">
                             1
                         </pagination-link>
 
-                        <pagination-link>
+                        <pagination-link class="sm:dt-hidden">
                             ...
                         </pagination-link>
                     </template>
 
                     <pagination-link v-for="(page, pageIndex) in pages"
                                      :key="`pages_${pageIndex}`"
+                                     class="dt-hidden md:dt-inline-block"
                                      :active="page === currentPage"
                                      :disabled="page === currentPage"
                                      @click.prevent="goToPageNumber(page)">
@@ -46,11 +47,11 @@
                     </pagination-link>
 
                     <template v-if="showDots('right')">
-                        <pagination-link>
+                        <pagination-link class="sm:dt-hidden">
                             ...
                         </pagination-link>
 
-                        <pagination-link :disabled="isInLastPage" :active="isInLastPage" @click.prevent="gotoLastPage">
+                        <pagination-link class="sm:dt-hidden" :disabled="isInLastPage" :active="isInLastPage" @click.prevent="gotoLastPage">
                             {{ totalPages }}
                         </pagination-link>
                     </template>
