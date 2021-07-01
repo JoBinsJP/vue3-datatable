@@ -205,4 +205,4 @@
     export default DataTable
 </script>
 
-<style scoped lang="scss" src="./DataTable.scss"/>
+<style lang="scss" src="./DataTable.scss"/>
