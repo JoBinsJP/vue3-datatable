@@ -2,96 +2,64 @@
     <div class="data-table dt-flex dt-flex-col">
         <div class="dt-align-middle dt-min-w-full">
 
-            <div v-if="filter" class="dt__filter dt-mb-3 dt-w-full">
-                <div class="dt-w-64">
-                    <label for="email" class="dt-sr-only">Search</label>
-                    <div class="dt-relative dt-rounded-md dt-shadow-sm">
-                        <input :value="tableQuery.search"
-                               type="search"
-                               name="search"
-                               class="dt__filter__search dt-block dt-border dt-border-gray-300 dt-pr-10 dt-px-2 dt-py-2
-                                    dt-rounded-md dt-w-full dt-outline-none focus:dt-ring-1 focus:dt-ring-inset sm:dt-text-sm"
-                               @input="handleOnSearchChange">
+            <Filter v-if="filter && topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
 
-                        <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
-                            <search-icon class="dt-text-gray-400"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dt__table_wrapper dt-relative dt-overflow-hidden sm:dt-rounded-lg">
+            <div class="dt__wrapper dt-relative dt-overflow-hidden sm:dt-rounded-lg">
                 <slot v-if="loading" name="loading">
                     <Loading/>
                 </slot>
 
-                <div v-if="showPagination" class="dt__pagination_wrapper--top md:dt-flex xs:dt-flex-col dt-bg-white dt-items-center dt-py-4">
-                    <pagination class="dt-flex-1"
+                <TopPaginationWrapper v-if="showPagination" :with-pagination="topPagination">
+                    <Pagination v-if="topPagination"
+                                class="dt-flex-1 dt-pr-4"
                                 :total="totalData"
                                 :current-page="tableQuery.page"
                                 :per-page="parseInt(tableQuery.per_page.toString())"
                                 @changed="handlePageChange"/>
 
-                    <div class="dt__pagination_size_wrapper dt-pr-4 dt-w-full dt-pb-3 dt-flex dt-justify-end sm:dt-pr-6 sm:dt-pb-0 sm:dt-w-auto">
-                        <div>
-                            <label for="location" class="dt-sr-only">Per page</label>
-                            <select :value="tableQuery.per_page"
-                                    name="per_page"
-                                    class="dt__pagination_size dt-block dt-w-full dt-pl-3 dt-pr-5 dt-py-2 dt-text-base dt-border dt-border-gray-300 sm:dt-text-sm dt-rounded-md dt-outline-none focus:dt-ring-1"
-                                    @input="handleOnChange">
-                                <option v-for="size in perPageOptions"
-                                        :key="`per_page_${size}`"
-                                        :value="size"
-                                        :selected="size === tableQuery.per_page"
-                                        v-text="size"/>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+                    <Filter v-if="filter && !topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
 
-                <div class="dt__table_container dt-overflow-auto">
-                    <table class="dt__table dt-min-w-full dt-divide-y dt-divide-gray-200">
-                        <thead class="dt__table__thead dt-bg-gray-50">
-                            <tr class="dt__table__thead_tr">
-                                <slot v-if="sn" name="thead-sn">
-                                    <table-head v-text="`S.N.`"/>
-                                </slot>
+                    <PaginationSize :value="tableQuery.per_page" :options="perPageOptions" @input="handleOnPaginationSizeChange"/>
+                </TopPaginationWrapper>
 
-                                <slot name="thead" :column="tableColumns">
-                                    <table-head v-for="(label, key) in tableColumns"
-                                                :key="`datatable-thead-th-${key}`"
-                                                v-text="label"/>
-                                </slot>
-                            </tr>
-                        </thead>
+                <TableWrapper>
+                    <THead>
+                        <slot v-if="sn" name="thead-sn">
+                            <TableHeadCell v-text="`S.N.`"/>
+                        </slot>
 
-                        <tbody class="dt__table__tbody">
-                            <tr v-for="(row, rowIndex) in tableRows"
-                                :key="`datatable-tbody-${uniqueId()}-${rowIndex}`"
-                                class="dt__table__tbody__tr"
-                                :class="striped && rowIndex % 2 ? 'dt-bg-gray-50' : 'dt-bg-white'">
-                                <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
-                                    <table-body v-text="rowIndex + 1 + paginatedRowIndex"/>
-                                </slot>
+                        <slot name="thead" :column="tableColumns">
+                            <TableHeadCell v-for="(label, key) in tableColumns"
+                                           :key="`datatable-thead-th-${key}`"
+                                           v-text="label"/>
+                        </slot>
+                    </THead>
 
-                                <slot name="tbody" :index="rowIndex" :row="row">
-                                    <table-body v-for="(label, key) in tableColumns"
-                                                :key="`datatable-tbody-td-${uniqueId()}-${key}`"
-                                                :name="label"
-                                                v-text="row[key]"/>
-                                </slot>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                    <TBody>
+                        <TableRow v-for="(row, rowIndex) in tableRows"
+                                  :key="`datatable-row-${uniqueId()}-${rowIndex}`"
+                                  :row-index="rowIndex"
+                                  :striped="striped">
+                            <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
+                                <TableBodyCell v-text="rowIndex + 1 + paginatedRowIndex"/>
+                            </slot>
 
-                <div v-if="showPagination" class="dt__pagination_wrapper--bottom">
+                            <slot name="tbody" :index="rowIndex" :row="row">
+                                <TableBodyCell v-for="(label, key) in tableColumns"
+                                               :key="`datatable-tbody-td-${uniqueId()}-${key}`"
+                                               :name="label"
+                                               v-text="row[key]"/>
+                            </slot>
+                        </TableRow>
+                    </TBody>
+                </TableWrapper>
+
+                <BottomPaginationWrapper v-if="showPagination && bottomPagination">
                     <pagination :total="totalData"
-                                class="dt-py-4"
                                 :current-page="tableQuery.page"
                                 :per-page="parseInt(tableQuery.per_page.toString())"
                                 @changed="handlePageChange"/>
-                </div>
+                </BottomPaginationWrapper>
             </div>
 
         </div>
@@ -106,23 +74,45 @@
         ref,
         SetupContext,
         watch,
-    }                          from "vue"
-    import { PaginationProps } from "./@types/PaginationProps"
-    import { QueryProps }      from "./@types/QueryProps"
-    import { TableQuery }      from "./@types/TableQuery"
-    import SearchIcon          from "./Components/Icons/SearchIcon.vue"
-    import Loading             from "./Components/Loading.vue"
-    import Pagination          from "./Components/Pagination.vue"
-    import TableBody           from "./Components/TableBody.vue"
-    import TableHead           from "./Components/TableHead.vue"
-    import { debounce }        from "./utils/helpers"
+    }                              from "vue"
+    import { PaginationProps }     from "./@types/PaginationProps"
+    import { QueryProps }          from "./@types/QueryProps"
+    import { TableQuery }          from "./@types/TableQuery"
+    import Filter                  from "./Components/Filter/Filter.vue"
+    import Loading                 from "./Components/Loading.vue"
+    import BottomPaginationWrapper from "./Components/Pagination/BottomPaginationWrapper.vue"
+    import Pagination              from "./Components/Pagination/Pagination.vue"
+    import PaginationSize          from "./Components/Pagination/PaginationSize.vue"
+    import TopPaginationWrapper    from "./Components/Pagination/TopPaginationWrapper.vue"
+    import TableBodyCell           from "./Components/Table/TableBodyCell.vue"
+    import TableHeadCell           from "./Components/Table/TableHeadCell.vue"
+    import TableRow                from "./Components/Table/TableRow.vue"
+    import TableWrapper            from "./Components/Table/TableWrapper.vue"
+    import TBody                   from "./Components/Table/TBody.vue"
+    import THead                   from "./Components/Table/THead.vue"
+    import { debounce }            from "./utils/helpers"
 
     const PER_PAGE = 10
 
     const PER_PAGE_OPTIONS = [5, 10, 15, 25, 50, 75, 100]
 
     const DataTable = defineComponent({
-        components: { SearchIcon, Loading, Pagination, TableBody, TableHead },
+        name: "DataTable",
+
+        components: {
+            TableHeadCell,
+            TableBodyCell,
+            TBody,
+            TableRow,
+            THead,
+            BottomPaginationWrapper,
+            TableWrapper,
+            PaginationSize,
+            TopPaginationWrapper,
+            Filter,
+            Loading,
+            Pagination,
+        },
 
         props: {
             rows: { type: Array, required: true },
@@ -132,8 +122,10 @@
             sn: { type: Boolean, required: false, default: false },
             filter: { type: Boolean, required: false, default: false },
             loading: { type: Boolean, required: false, default: false },
-            perPageOptions: { type: Array as PropType<number[]>, required: false, default: () => PER_PAGE_OPTIONS },
+            perPageOptions: { type: Array as PropType<Array<string | number>>, required: false, default: () => PER_PAGE_OPTIONS },
             query: { type: Object as PropType<QueryProps>, required: false, default: () => ({}) },
+            topPagination: { type: Boolean, required: false, default: false },
+            bottomPagination: { type: Boolean, required: false, default: true },
         },
 
         emits: ["loadData"],
@@ -180,14 +172,12 @@
                 tableQuery.value.page = page
             }
 
-            const handleOnSearchChange = debounce((event) => {
-                tableQuery.value = { ...tableQuery.value, page: 1, search: event.target.value }
+            const handleOnSearchChange = debounce((value) => {
+                tableQuery.value = { ...tableQuery.value, page: 1, search: value }
             })
 
-            const handleOnChange = (event) => {
-                const { name, value } = event.target
-
-                tableQuery.value = { ...tableQuery.value, page: 1, [name]: value }
+            const handleOnPaginationSizeChange = (value) => {
+                tableQuery.value = { ...tableQuery.value, page: 1, per_page: value }
             }
 
             return {
@@ -200,7 +190,7 @@
                 uniqueId,
                 handlePageChange,
                 handleOnSearchChange,
-                handleOnChange,
+                handleOnPaginationSizeChange,
             }
         },
     })
