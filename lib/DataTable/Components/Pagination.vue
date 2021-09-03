@@ -1,8 +1,8 @@
 <template>
-    <div v-if="totalPages" class="dt-bg-white dt-px-4 dt-py-3 dt-flex dt-items-center dt-justify-between dt-border-t dt-border-gray-200 sm:dt-px-6">
+    <div v-if="totalPages" class="dt__pagination dt-bg-white dt-px-4 dt-flex dt-items-center dt-justify-between sm:dt-px-6">
         <div class="dt-hidden sm:dt-flex-1 sm:dt-flex sm:dt-items-center sm:dt-justify-between">
             <div v-show="total">
-                <p class="dt-text-sm dt-text-gray-700">
+                <p class="dt__pagination__info dt-text-sm dt-text-gray-700">
                     <slot name="pagination-info" :currentStart="currentStart" :currentEnd="currentEnd" :total="total">
                         Showing
                         <span class="dt-font-medium" v-text="currentStart"/>
@@ -16,7 +16,7 @@
             </div>
 
             <div v-if="totalPages > 1">
-                <nav class="dt-relative dt-z-0 dt-inline-flex dt-rounded-md dt-shadow-sm dt--space-x-px" aria-label="Pagination">
+                <nav class="dt__pagination__nav dt-relative dt-z-0 dt-inline-flex dt-rounded-md dt-shadow-sm dt--space-x-px" aria-label="Pagination">
                     <pagination-link :disabled="isInFirstPage" class="dt-rounded-l-md" @click.prevent="gotoFirstPage">
                         <span class="dt-sr-only">Go to first</span>
                         &laquo;

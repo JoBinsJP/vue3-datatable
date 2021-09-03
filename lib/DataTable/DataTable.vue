@@ -2,14 +2,15 @@
     <div class="data-table dt-flex dt-flex-col">
         <div class="dt-align-middle dt-min-w-full">
 
-            <div v-if="filter" class="dt-filter-wrapper dt-mb-3 dt-w-full">
+            <div v-if="filter" class="dt__filter dt-mb-3 dt-w-full">
                 <div class="dt-w-64">
                     <label for="email" class="dt-sr-only">Search</label>
                     <div class="dt-relative dt-rounded-md dt-shadow-sm">
                         <input :value="tableQuery.search"
                                type="search"
                                name="search"
-                               class="focus:dt-ring-0 dt-block dt-w-full dt-pr-10 sm:dt-text-sm dt-border-gray-300 dt-rounded-md"
+                               class="dt__filter__search dt-block dt-border dt-border-gray-300 dt-pr-10 dt-px-2 dt-py-2
+                                    dt-rounded-md dt-w-full dt-outline-none focus:dt-ring-1 focus:dt-ring-inset sm:dt-text-sm"
                                @input="handleOnSearchChange">
 
                         <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
@@ -19,24 +20,24 @@
                 </div>
             </div>
 
-            <div class="table-wrapper dt-relative dt-shadow dt-overflow-hidden dt-border-b dt-border-gray-200 sm:dt-rounded-lg">
+            <div class="dt__table_wrapper dt-relative dt-overflow-hidden sm:dt-rounded-lg">
                 <slot v-if="loading" name="loading">
                     <Loading/>
                 </slot>
 
-                <div v-if="showPagination" class="pagination-wrapper md:dt-flex smdt-flex-col dt-bg-white dt-items-center">
+                <div v-if="showPagination" class="dt__pagination_wrapper--top md:dt-flex xs:dt-flex-col dt-bg-white dt-items-center dt-py-4">
                     <pagination class="dt-flex-1"
                                 :total="totalData"
                                 :current-page="tableQuery.page"
                                 :per-page="parseInt(tableQuery.per_page.toString())"
                                 @changed="handlePageChange"/>
 
-                    <div class="dt-pr-4 dt-w-full dt-pb-3 dt-flex dt-justify-end sm:dt-pr-6 sm:dt-pb-0 sm:dt-w-auto">
-                        <div class="">
+                    <div class="dt__pagination_size_wrapper dt-pr-4 dt-w-full dt-pb-3 dt-flex dt-justify-end sm:dt-pr-6 sm:dt-pb-0 sm:dt-w-auto">
+                        <div>
                             <label for="location" class="dt-sr-only">Per page</label>
                             <select :value="tableQuery.per_page"
                                     name="per_page"
-                                    class="dt-block dt-w-full dt-pl-3 dt-pr-10 dt-py-2 dt-text-base dt-border-gray-300 sm:dt-text-sm dt-rounded-md"
+                                    class="dt__pagination_size dt-block dt-w-full dt-pl-3 dt-pr-5 dt-py-2 dt-text-base dt-border dt-border-gray-300 sm:dt-text-sm dt-rounded-md dt-outline-none focus:dt-ring-1"
                                     @input="handleOnChange">
                                 <option v-for="size in perPageOptions"
                                         :key="`per_page_${size}`"
@@ -48,10 +49,10 @@
                     </div>
                 </div>
 
-                <div class="table-container dt-overflow-auto">
-                    <table class="dt-min-w-full dt-divide-y dt-divide-gray-200">
-                        <thead class="dt-bg-gray-50">
-                            <tr>
+                <div class="dt__table_container dt-overflow-auto">
+                    <table class="dt__table dt-min-w-full dt-divide-y dt-divide-gray-200">
+                        <thead class="dt__table__thead dt-bg-gray-50">
+                            <tr class="dt__table__thead_tr">
                                 <slot v-if="sn" name="thead-sn">
                                     <table-head v-text="`S.N.`"/>
                                 </slot>
@@ -64,9 +65,10 @@
                             </tr>
                         </thead>
 
-                        <tbody>
+                        <tbody class="dt__table__tbody">
                             <tr v-for="(row, rowIndex) in tableRows"
                                 :key="`datatable-tbody-${uniqueId()}-${rowIndex}`"
+                                class="dt__table__tbody__tr"
                                 :class="striped && rowIndex % 2 ? 'dt-bg-gray-50' : 'dt-bg-white'">
                                 <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
                                     <table-body v-text="rowIndex + 1 + paginatedRowIndex"/>
@@ -83,8 +85,9 @@
                     </table>
                 </div>
 
-                <div v-if="showPagination" class="pagination-wrapper">
+                <div v-if="showPagination" class="dt__pagination_wrapper--bottom">
                     <pagination :total="totalData"
+                                class="dt-py-4"
                                 :current-page="tableQuery.page"
                                 :per-page="parseInt(tableQuery.per_page.toString())"
                                 @changed="handlePageChange"/>

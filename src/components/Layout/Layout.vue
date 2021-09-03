@@ -1,5 +1,5 @@
 <template>
-    <div class="dt-h-screen dt-flex dt-overflow-hidden dt-bg-gray-100">
+    <div class="dt-h-screen dt-flex dt-overflow-hidden dt-bg-blue-50">
         <off-canvas :show="showSideBar" @close="toggleSidebar"/>
 
         <sidebar/>
