@@ -89,8 +89,11 @@
     import TableRow                from "./Components/Table/TableRow.vue"
     import TableWrapper            from "./Components/Table/TableWrapper.vue"
     import TBody                   from "./Components/Table/TBody.vue"
-    import THead                   from "./Components/Table/THead.vue"
-    import { debounce }            from "./utils/helpers"
+    import THead from "./Components/Table/THead.vue"
+    import {
+        debounce,
+        formatString,
+    }            from "./utils/helpers"
 
     const PER_PAGE = 10
 
@@ -150,7 +153,7 @@
                     return {}
                 }
 
-                return Object.keys(props.rows[0]).reduce((cols, key) => ({ ...cols, [key]: key }), {})
+                return Object.keys(props.rows[0]).reduce((cols, key) => ({ ...cols, [key]: formatString(key) }), {})
             })
 
             const paginatedRowIndex = computed(() => showPagination.value ? tableQuery.value.per_page * (tableQuery.value.page - 1) : 0)
