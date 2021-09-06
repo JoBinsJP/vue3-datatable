@@ -3,6 +3,7 @@
                 :pagination="pagination"
                 :query="query"
                 :loading="isLoading"
+                top-pagination
                 striped
                 sn
                 filter

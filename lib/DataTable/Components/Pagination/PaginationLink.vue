@@ -1,6 +1,6 @@
 <template>
     <a href="#"
-       class="dt-relative dt-inline-flex dt-items-center dt-px-4 dt-py-2 dt-border dt-text-sm dt-font-medium"
+       class="dt__pagination__link dt-relative dt-inline-flex dt-items-center dt-px-4 dt-py-2 dt-border dt-text-sm dt-font-medium"
        :class="linkClasses"
        v-on="{...$attrs}">
         <slot/>
