@@ -1,5 +1,6 @@
 import { Routes }      from "./@types/Route"
 import Basic           from "./components/Tables/Basic.vue"
+import ClickableRow    from "./components/Tables/ClickableRow.vue"
 import CustomLoader    from "./components/Tables/CustomLoader.vue"
 import CustomRowColumn from "./components/Tables/CustomRowColumn.vue"
 import Filter          from "./components/Tables/Filter.vue"
@@ -53,6 +54,12 @@ const routes: Routes = {
         title: "Responsive",
         group: "table",
         component: Responsive,
+    },
+
+    "/table/clickable": {
+        title: "Clickable Row",
+        group: "table",
+        component: ClickableRow,
     },
 }
 

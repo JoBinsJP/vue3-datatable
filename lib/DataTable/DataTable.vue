@@ -38,8 +38,11 @@
                     <TBody>
                         <TableRow v-for="(row, rowIndex) in tableRows"
                                   :key="`datatable-row-${uniqueId()}-${rowIndex}`"
+                                  :hoverable="hoverable"
+                                  :non-clickable="nonClickable"
                                   :row-index="rowIndex"
-                                  :striped="striped">
+                                  :striped="striped"
+                                  @clicked="rowClickHandler(row)">
                             <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
                                 <TableBodyCell v-text="rowIndex + 1 + paginatedRowIndex"/>
                             </slot>
@@ -89,11 +92,11 @@
     import TableRow                from "./Components/Table/TableRow.vue"
     import TableWrapper            from "./Components/Table/TableWrapper.vue"
     import TBody                   from "./Components/Table/TBody.vue"
-    import THead from "./Components/Table/THead.vue"
+    import THead                   from "./Components/Table/THead.vue"
     import {
         debounce,
         formatString,
-    }            from "./utils/helpers"
+    }                              from "./utils/helpers"
 
     const PER_PAGE = 10
 
@@ -129,9 +132,11 @@
             query: { type: Object as PropType<QueryProps>, required: false, default: () => ({}) },
             topPagination: { type: Boolean, required: false, default: false },
             bottomPagination: { type: Boolean, required: false, default: true },
+            hoverable: { type: Boolean, required: false, default: false },
+            nonClickable: { type: Boolean, required: false, default: false },
         },
 
-        emits: ["loadData"],
+        emits: ["loadData", "rowClicked"],
 
         setup<T>(props, { emit }: SetupContext) {
             const tableQuery = ref<TableQuery>({
@@ -183,6 +188,14 @@
                 tableQuery.value = { ...tableQuery.value, page: 1, per_page: value }
             }
 
+            const rowClickHandler = (row) => {
+                if (props.nonClickable || !props.hoverable) {
+                    return
+                }
+
+                emit("rowClicked", row)
+            }
+
             return {
                 tableQuery,
                 showPagination,
@@ -194,6 +207,7 @@
                 handlePageChange,
                 handleOnSearchChange,
                 handleOnPaginationSizeChange,
+                rowClickHandler,
             }
         },
     })
