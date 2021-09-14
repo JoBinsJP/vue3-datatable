@@ -4,7 +4,7 @@
 
             <Filter v-if="filter && topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
 
-            <div class="dt__wrapper dt-relative dt-overflow-hidden sm:dt-rounded-lg">
+            <div class="dt__wrapper dt-relative dt-overflow-hidden" :class="{'sm:dt-rounded-lg': rounded}">
                 <slot v-if="loading" name="loading">
                     <Loading/>
                 </slot>
@@ -53,6 +53,10 @@
                                                :name="label"
                                                v-text="row[key]"/>
                             </slot>
+                        </TableRow>
+
+                        <TableRow v-if="tableRows.length === 0" :row-index="0">
+                            <slot name="empty"/>
                         </TableRow>
                     </TBody>
                 </TableWrapper>
@@ -124,6 +128,7 @@
             rows: { type: Array, required: true },
             columns: { type: Object, required: false, default: null },
             pagination: { type: Object as PropType<PaginationProps>, required: false, default: null },
+            rounded: { type: Boolean, required: false, default: false },
             striped: { type: Boolean, required: false, default: false },
             sn: { type: Boolean, required: false, default: false },
             filter: { type: Boolean, required: false, default: false },
