@@ -1,7 +1,9 @@
 import { Routes }      from "./@types/Route"
 import Basic           from "./components/Tables/Basic.vue"
+import ClickableRow    from "./components/Tables/ClickableRow.vue"
 import CustomLoader    from "./components/Tables/CustomLoader.vue"
 import CustomRowColumn from "./components/Tables/CustomRowColumn.vue"
+import EmptyTable      from "./components/Tables/EmptyTable.vue"
 import Filter          from "./components/Tables/Filter.vue"
 import Paginated       from "./components/Tables/Paginated.vue"
 import Responsive      from "./components/Tables/Responsive.vue"
@@ -53,6 +55,18 @@ const routes: Routes = {
         title: "Responsive",
         group: "table",
         component: Responsive,
+    },
+
+    "/table/clickable": {
+        title: "Clickable Row",
+        group: "table",
+        component: ClickableRow,
+    },
+
+    "/table/empty": {
+        title: "Empty Table",
+        group: "table",
+        component: EmptyTable,
     },
 }
 
