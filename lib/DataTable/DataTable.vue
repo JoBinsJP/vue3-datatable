@@ -4,7 +4,7 @@
 
             <Filter v-if="filter && topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
 
-            <div class="dt__wrapper dt-relative dt-overflow-hidden" :class="{'sm:dt-rounded-lg': rounded}">
+            <div class="dt__wrapper dt-relative" :class="{'sm:dt-rounded-lg': rounded}">
                 <slot v-if="loading" name="loading">
                     <Loading/>
                 </slot>
