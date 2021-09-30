@@ -15,7 +15,19 @@
                                 :total="totalData"
                                 :current-page="tableQuery.page"
                                 :per-page="parseInt(tableQuery.per_page.toString())"
-                                @changed="handlePageChange"/>
+                                @changed="handlePageChange">
+                        <template #pagination-info="paginationInfo">
+                            <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
+                                Showing
+                                <span class="dt-font-medium" v-text="paginationInfo.start"/>
+                                to
+                                <span class="dt-font-medium" v-text="paginationInfo.end"/>
+                                of
+                                <span class="dt-font-medium" v-text="paginationInfo.total"/>
+                                results.
+                            </slot>
+                        </template>
+                    </Pagination>
 
                     <Filter v-if="filter && !topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
 
@@ -25,7 +37,7 @@
                 <TableWrapper>
                     <THead>
                         <slot v-if="sn" name="thead-sn">
-                            <TableHeadCell v-text="`S.N.`"/>
+                            <TableHeadCell class="dt__table__thead__th_sn" v-text="`S.N.`"/>
                         </slot>
 
                         <slot name="thead" :column="tableColumns">
@@ -44,7 +56,7 @@
                                   :striped="striped"
                                   @clicked="rowClickHandler(row)">
                             <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
-                                <TableBodyCell v-text="rowIndex + 1 + paginatedRowIndex"/>
+                                <TableBodyCell class="dt__table__tbody_td_sn" v-text="rowIndex + 1 + paginatedRowIndex"/>
                             </slot>
 
                             <slot name="tbody" :index="rowIndex" :row="row">
@@ -65,7 +77,19 @@
                     <pagination :total="totalData"
                                 :current-page="tableQuery.page"
                                 :per-page="parseInt(tableQuery.per_page.toString())"
-                                @changed="handlePageChange"/>
+                                @changed="handlePageChange">
+                        <template #pagination-info="paginationInfo">
+                            <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
+                                Showing
+                                <span class="dt-font-medium" v-text="paginationInfo.start"/>
+                                to
+                                <span class="dt-font-medium" v-text="paginationInfo.end"/>
+                                of
+                                <span class="dt-font-medium" v-text="paginationInfo.total"/>
+                                results.
+                            </slot>
+                        </template>
+                    </pagination>
                 </BottomPaginationWrapper>
             </div>
 
