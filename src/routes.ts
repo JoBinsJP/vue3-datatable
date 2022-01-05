@@ -8,6 +8,7 @@ import Filter          from "./components/Tables/Filter.vue"
 import Paginated       from "./components/Tables/Paginated.vue"
 import Responsive      from "./components/Tables/Responsive.vue"
 import Striped         from "./components/Tables/Striped.vue"
+import TestTable       from "./components/Tables/Test.vue"
 
 const routes: Routes = {
     "/": {
@@ -67,6 +68,12 @@ const routes: Routes = {
         title: "Empty Table",
         group: "table",
         component: EmptyTable,
+    },
+
+    "/table/test": {
+        title: "Test Table",
+        group: "table",
+        component: TestTable,
     },
 }
 
