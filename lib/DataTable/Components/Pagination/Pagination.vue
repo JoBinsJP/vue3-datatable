@@ -119,7 +119,7 @@
             const endPage = computed(() => Math.min(startPage.value + props.maxVisibleButtons - 1, totalPages.value))
 
             const pages = computed(() => {
-                const range = []
+                const range: any[] = []
 
                 for (let i = startPage.value; i <= endPage.value; i += 1) {
                     if (i > 0) {

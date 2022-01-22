@@ -13,7 +13,7 @@
         <template #tbody="{row}">
             <table-body v-text="row.name"/>
 
-            <table-body v-text="row.trips.toLocaleString()"/>
+            <table-body v-text="row.trips?row.trips.toLocaleString():''"/>
 
             <table-body>
                 <div class="dt-flex dt-items-center">

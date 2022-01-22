@@ -3,7 +3,7 @@
         <div class="dt-w-64">
             <label for="email" class="dt-sr-only">Search</label>
             <div class="dt-relative dt-rounded-md dt-shadow-sm">
-                <SearchInput :value="search" @input="$emit('input', $event.target.value)"/>
+                <SearchInput :value="search" @input="emitirEvento($event)"/>
 
                 <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
                     <SearchIcon class="dt-text-gray-400"/>
@@ -24,9 +24,14 @@
         components: { SearchInput, SearchIcon },
 
         props: {
-            search: { type: String, required: true },
+            search: { type: String, required: false },
         },
 
         emits: ["input"],
+        methods:{
+            emitirEvento($event){
+                this.$emit("input",$event.target.value)
+            },
+        },
     })
 </script>

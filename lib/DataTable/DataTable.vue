@@ -1,38 +1,36 @@
 <template>
     <div class="data-table dt-flex dt-flex-col">
         <div class="dt-align-middle dt-min-w-full">
-
-            <Filter v-if="filter && topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
-
+            <Filter v-if="filter && topPagination" :search="tableQuery.search || ''" @input="handleOnSearchChange"/>
             <div class="dt__wrapper dt-relative" :class="{'sm:dt-rounded-lg': rounded}">
                 <slot v-if="loading" name="loading">
                     <Loading/>
                 </slot>
-
-                <TopPaginationWrapper v-if="showPagination" :with-pagination="topPagination">
-                    <Pagination v-if="topPagination"
-                                class="dt-flex-1 dt-pr-4"
-                                :total="totalData"
-                                :current-page="tableQuery.page"
-                                :per-page="parseInt(tableQuery.per_page.toString())"
-                                @changed="handlePageChange">
-                        <template #pagination-info="paginationInfo">
-                            <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
-                                Showing
-                                <span class="dt-font-medium" v-text="paginationInfo.start"/>
-                                to
-                                <span class="dt-font-medium" v-text="paginationInfo.end"/>
-                                of
-                                <span class="dt-font-medium" v-text="paginationInfo.total"/>
-                                results.
-                            </slot>
-                        </template>
-                    </Pagination>
-
-                    <Filter v-if="filter && !topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
-
-                    <PaginationSize :value="tableQuery.per_page" :options="perPageOptions" @input="handleOnPaginationSizeChange"/>
-                </TopPaginationWrapper>
+                <template v-if="tableQuery.per_page">
+                    <TopPaginationWrapper v-if="showPagination" :with-pagination="topPagination">
+                        <Pagination v-if="topPagination"
+                                    class="dt-flex-1 dt-pr-4"
+                                    :total="totalData"
+                                    :current-page="tableQuery.page"
+                                    :per-page="parseInt(tableQuery.per_page.toString())"
+                                    @changed="handlePageChange">
+                            <template #pagination-info="paginationInfo">
+                                <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
+                                    Showing
+                                    <span class="dt-font-medium" v-text="paginationInfo.start"/>
+                                    to
+                                    <span class="dt-font-medium" v-text="paginationInfo.end"/>
+                                    of
+                                    <span class="dt-font-medium" v-text="paginationInfo.total"/>
+                                    results.
+                                </slot>
+                            </template>
+                        </Pagination>
+                        <Filter v-if="filter && !topPagination" :search="tableQuery.search || ''" @input="handleOnSearchChange"/>
+                        <PaginationSize :value="tableQuery.per_page" :options="perPageOptions" @input="handleOnPaginationSizeChange"/>
+                    </TopPaginationWrapper>
+                </template>
+                
 
                 <TableWrapper>
                     <THead>
@@ -72,25 +70,26 @@
                         </TableRow>
                     </TBody>
                 </TableWrapper>
-
-                <BottomPaginationWrapper v-if="showPagination && bottomPagination">
-                    <pagination :total="totalData"
-                                :current-page="tableQuery.page"
-                                :per-page="parseInt(tableQuery.per_page.toString())"
-                                @changed="handlePageChange">
-                        <template #pagination-info="paginationInfo">
-                            <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
-                                Showing
-                                <span class="dt-font-medium" v-text="paginationInfo.start"/>
-                                to
-                                <span class="dt-font-medium" v-text="paginationInfo.end"/>
-                                of
-                                <span class="dt-font-medium" v-text="paginationInfo.total"/>
-                                results.
-                            </slot>
-                        </template>
-                    </pagination>
-                </BottomPaginationWrapper>
+                <template v-if="tableQuery.per_page">
+                    <BottomPaginationWrapper v-if="showPagination && bottomPagination">
+                        <pagination :total="totalData"
+                                    :current-page="tableQuery.page"
+                                    :per-page="parseInt(tableQuery.per_page.toString())"
+                                    @changed="handlePageChange">
+                            <template #pagination-info="paginationInfo">
+                                <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
+                                    Showing
+                                    <span class="dt-font-medium" v-text="paginationInfo.start"/>
+                                    to
+                                    <span class="dt-font-medium" v-text="paginationInfo.end"/>
+                                    of
+                                    <span class="dt-font-medium" v-text="paginationInfo.total"/>
+                                    results.
+                                </slot>
+                            </template>
+                        </pagination>
+                    </BottomPaginationWrapper>
+                </template>
             </div>
 
         </div>
@@ -130,7 +129,7 @@
 
     const PER_PAGE_OPTIONS = [5, 10, 15, 25, 50, 75, 100]
 
-    const DataTable = defineComponent({
+    export default defineComponent({
         name: "DataTable",
 
         components: {
@@ -167,7 +166,7 @@
 
         emits: ["loadData", "rowClicked"],
 
-        setup<T>(props, { emit }: SetupContext) {
+        setup(props, { emit }: SetupContext) {
             const tableQuery = ref<TableQuery>({
                 page: props.pagination?.page || 1,
                 search: props.query.search || "",
@@ -176,7 +175,7 @@
 
             const showPagination = computed(() => !!props.pagination)
             const totalData = computed(() => props.pagination?.total || props.rows.length)
-            const tableRows = computed<T[]>(() => props.rows)
+            const tableRows = computed<any[]>(() => props.rows)
 
             const tableColumns = computed(() => {
                 if (props.columns) {
@@ -186,11 +185,11 @@
                 if (props.rows.length === 0) {
                     return {}
                 }
-
-                return Object.keys(props.rows[0]).reduce((cols, key) => ({ ...cols, [key]: formatString(key) }), {})
+                const rows: any[] = props.rows;
+                return Object.keys(rows[0]).reduce((cols, key) => ({ ...cols, [key]: formatString(key) }), {})
             })
 
-            const paginatedRowIndex = computed(() => showPagination.value ? tableQuery.value.per_page * (tableQuery.value.page - 1) : 0)
+            const paginatedRowIndex = computed(() => showPagination.value ? Number(tableQuery.value.per_page) * (Number(tableQuery.value.page) - 1) : 0)
 
             const uniqueId = () => Math.floor(Math.random() * 100)
 
@@ -240,8 +239,6 @@
             }
         },
     })
-
-    export default DataTable
 </script>
 
-<style lang="scss" src="./DataTable.scss"/>
+<style lang="scss" src="./DataTable.scss" scoped/>

@@ -6,12 +6,12 @@
                     name="per_page"
                     class="dt__pagination_size dt-block dt-w-full dt-pl-3 dt-pr-5 dt-py-2 dt-text-base dt-border
                         dt-border-gray-300 sm:dt-text-sm dt-rounded-md dt-outline-none focus:dt-ring-1 focus:dt-ring-inset"
-                    @input="$emit('input', $event.target.value)">
-                <option v-for="size in options"
+                    @input="emitirEvento($event)">
+                <option v-for="size in obtenerOptions()"
                         :key="`per_page_${size}`"
                         :value="size"
                         :selected="size === value"
-                        v-text="size"/>
+                        v-text="size"></option>
             </select>
         </div>
     </div>
@@ -29,5 +29,13 @@
         },
 
         emits: ["input"],
+        methods:{
+            emitirEvento($event){
+                this.$emit("input",$event.target.value)
+            },
+            obtenerOptions(): any[]{
+                return this.options
+            },
+        },
     })
 </script>

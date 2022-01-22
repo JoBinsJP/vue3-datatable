@@ -1,6 +1,6 @@
 {
-    "name": "@jobinsjp/vue3-datatable",
-    "version": "1.0.12",
+    "name": "@jagjerez/vue3-datatable",
+    "version": "0.0.4",
     "description": "DataTable component with basic pagination, search filters etc for Vue3",
     "keywords": [
         "datatable",
@@ -10,9 +10,9 @@
     ],
     "author": {
         "name": "Puncoz Nepal",
-        "url": "https://github.com/puncoz-official"
+        "url": "https://github.com/jagjerez"
     },
-    "repository": "https://github.com/JoBinsJP/vue3-datatable.git",
+    "repository": "https://github.com/jagjerez/vue3-datatable.git",
     "homepage": "https://vue3-datatable.netlify.app/",
     "private": false,
     "files": [
@@ -21,6 +21,7 @@
     "main": "./dist/vue3-datatable.umd.js",
     "module": "./dist/vue3-datatable.es.js",
     "style": "./dist/style.css",
+    "types": "./dist//types/index.d.ts",
     "source": "src/main.ts",
     "engines": {
         "node": ">=14",
@@ -32,7 +33,8 @@
         "clean:modules": "rimraf node_modules",
         "dev": "vite --config vite.demo.config.ts",
         "predist": "yarn clean && yarn lint",
-        "dist": "vue-tsc --noEmit && vite build --config vite.package.config.ts",
+        "dist": "vite build --config vite.package.config.ts && yarn tsc -p ./tsconfig.lib.json --declaration --emitDeclarationOnly",
+        "distts": "vue-tsc --emitDeclarationOnly && vite build --config vite.package.config.ts",
         "build": "vue-tsc --noEmit && vite build --config vite.demo.config.ts",
         "predeploy": "yarn build",
         "deploy": "gh-pages -d build --remote jobins -b demo",
@@ -72,6 +74,7 @@
         "tailwindcss": "^2.2.4",
         "typescript": "^4.3.5",
         "vite": "^2.3.8",
+        "vite-plugin-dts": "^0.9.9",
         "vue": "^3.1.2",
         "vue-tsc": "^0.3.0"
     },

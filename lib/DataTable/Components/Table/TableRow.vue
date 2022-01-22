@@ -30,7 +30,7 @@
         emits: ["clicked"],
 
         setup(props) {
-            const formattedRowIndex = ref(parseInt(props.rowIndex) || 0)
+            const formattedRowIndex = ref(parseInt(String(props.rowIndex || 0)) )
 
             return {formattedRowIndex}
         },
