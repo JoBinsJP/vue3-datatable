@@ -15,7 +15,7 @@
     })
 </script>
 
-<style lang="scss" src="../DataTable.scss?inline" scoped>
+<style lang="scss" scoped>
     $size: 75px;
 
     .dt__loading {

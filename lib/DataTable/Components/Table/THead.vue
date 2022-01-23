@@ -13,4 +13,3 @@
         name: "THead",
     })
 </script>
-<style lang="scss" src="../../DataTable.scss?inline" scoped/>

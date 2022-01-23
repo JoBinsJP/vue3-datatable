@@ -23,6 +23,7 @@ export default defineConfig({
         },
     },
     build: {
+        cssCodeSplit:false,
         lib: {
             entry: resolve(__dirname, "lib/DataTable/index.ts"),
             name: "@jobinsjp/vue3-datatable",
