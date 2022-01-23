@@ -36,4 +36,4 @@
         },
     })
 </script>
-<style lang="scss" src="../../DataTable.scss" scoped/>
+<style lang="scss" src="../../DataTable.scss?inline" scoped/>

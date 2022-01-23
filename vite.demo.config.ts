@@ -15,4 +15,10 @@ export default defineConfig({
             "@/lib": resolve(__dirname, "./lib/DataTable"),
         },
     },
+    server: {
+        fs: {
+            // Allow serving files from one level up to the project root
+            allow: ['..']
+        }
+    }
 })
