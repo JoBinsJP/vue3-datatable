@@ -15,7 +15,7 @@
     })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" src="../DataTable.scss" scoped>
     $size: 75px;
 
     .dt__loading {

@@ -16,3 +16,4 @@
         },
     })
 </script>
+<style lang="scss" src="../../DataTable.scss" scoped/>

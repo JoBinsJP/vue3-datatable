@@ -13,3 +13,4 @@
         name: "SearchIcon",
     })
 </script>
+<style lang="scss" src="../../DataTable.scss" scoped/>

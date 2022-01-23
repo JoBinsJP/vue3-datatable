@@ -6,10 +6,11 @@
     </thead>
 </template>
 
-<script lang="ts">
+<script lang="ts" >
     import { defineComponent } from "vue"
 
     export default defineComponent({
         name: "THead",
     })
 </script>
+<style lang="scss" src="../../DataTable.scss" scoped/>

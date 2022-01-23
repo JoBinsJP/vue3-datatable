@@ -7,7 +7,7 @@ import dts from "vite-plugin-dts";
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [vue({
-        isProduction: true,
+        isProduction: true
     }),dts({
         outputDir: 'dist/types',
         include: ['lib/DataTable/**/*.ts'],

@@ -241,4 +241,4 @@
     })
 </script>
 
-<style lang="scss" src="./DataTable.scss"/>
+<style lang="scss" src="./DataTable.scss" scoped/>
