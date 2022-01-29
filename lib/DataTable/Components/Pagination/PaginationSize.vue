@@ -1,11 +1,11 @@
 <template>
-    <div class="dt__pagination_size_wrapper dt-w-full dt-flex dt-justify-end sm:dt-w-auto">
+    <div class="dt-jg-pagination-size-wrapper dt-jg-w-full dt-jg-flex dt-jg-justify-end sm:dt-jg-w-auto">
         <div>
-            <label for="location" class="dt-sr-only">Per page</label>
+            <label for="location" class="dt-jg-sr-only">Per page</label>
             <select :value="value"
                     name="per_page"
-                    class="dt__pagination_size dt-block dt-w-full dt-pl-3 dt-pr-5 dt-py-2 dt-text-base dt-border
-                        dt-border-gray-300 sm:dt-text-sm dt-rounded-md dt-outline-none focus:dt-ring-1 focus:dt-ring-inset"
+                    class="dt-jg-pagination-size dt-jg-block dt-jg-w-full dt-jg-pl-3 dt-jg-pr-5 dt-jg-py-2 dt-jg-text-base dt-jg-border
+                        dt-jg-border-gray-300 sm:dt-jg-text-sm dt-jg-rounded-md dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset"
                     @input="emitirEvento($event)">
                 <option v-for="size in obtenerOptions()"
                         :key="`per_page_${size}`"

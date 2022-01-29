@@ -1,6 +1,6 @@
 <template>
-    <div class="dt__table_wrapper dt-overflow-auto">
-        <table class="dt__table dt-min-w-full dt-divide-y dt-divide-gray-200" style="width: 100%;">
+    <div class="dt-jg-table-wrapper dt-jg-overflow-auto">
+        <table class="dt-jg-table dt-jg-min-w-full dt-jg-divide-y dt-jg-divide-gray-200" style="width: 100%;">
             <slot/>
         </table>
     </div>

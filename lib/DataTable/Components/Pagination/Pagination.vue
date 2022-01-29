@@ -1,46 +1,46 @@
 <template>
-    <div v-if="totalPages" class="dt__pagination dt-bg-white dt-flex dt-items-center dt-justify-between">
-        <div class="dt-hidden sm:dt-flex-1 sm:dt-flex sm:dt-items-center sm:dt-justify-between">
+    <div v-if="totalPages" class="dt-jg-bg-white dt-jg-flex dt-jg-items-center dt-jg-justify-between">
+        <div class="dt-jg-hidden sm:dt-jg-flex-1 sm:dt-jg-flex sm:dt-jg-items-center sm:dt-jg-justify-between">
             <PaginationInfo v-if="total">
                 <slot name="pagination-info" :start="currentStart" :end="currentEnd" :total="total">
                     Showing
-                    <span class="dt-font-medium" v-text="currentStart"/>
+                    <span class="dt-jg-font-medium" v-text="currentStart"/>
                     to
-                    <span class="dt-font-medium" v-text="currentEnd"/>
+                    <span class="dt-jg-font-medium" v-text="currentEnd"/>
                     of
-                    <span class="dt-font-medium" v-text="total"/>
+                    <span class="dt-jg-font-medium" v-text="total"/>
                     results.
                 </slot>
             </PaginationInfo>
 
             <PaginationButtons v-if="totalPages > 1">
-                <pagination-link key="page_first" :disabled="isInFirstPage" class="dt-rounded-l-md" @click.prevent="gotoFirstPage">
-                    <span class="dt-sr-only">Go to first</span>
+                <pagination-link key="page_first" :disabled="isInFirstPage" class="dt-jg-rounded-l-md" @click.prevent="gotoFirstPage">
+                    <span class="dt-jg-sr-only">Go to first</span>
                     &laquo;
                 </pagination-link>
 
                 <pagination-link key="page_previous" :disabled="isInFirstPage" @click.prevent="gotoPreviousPage">
-                    <span class="dt-sr-only">Previous</span>
+                    <span class="dt-jg-sr-only">Previous</span>
                     &lsaquo;
                 </pagination-link>
 
                 <template v-if="showDots('left')">
                     <pagination-link key="page_1"
-                                     class="dt-block sm:dt-hidden"
+                                     class="dt-jg-block sm:dt-jg-hidden"
                                      :disabled="isInFirstPage"
                                      :active="isInFirstPage"
                                      @click.prevent="gotoFirstPage">
                         1
                     </pagination-link>
 
-                    <pagination-link key="page_divider_left" class="sm:dt-hidden">
+                    <pagination-link key="page_divider_left" class="sm:dt-jg-hidden">
                         ...
                     </pagination-link>
                 </template>
 
                 <pagination-link v-for="page in pages"
                                  :key="`pages_${page}`"
-                                 class="dt-hidden md:dt-inline-block"
+                                 class="dt-jg-hidden md:dt-inline-block"
                                  :active="page === currentPage"
                                  :disabled="page === currentPage"
                                  @click.prevent="goToPageNumber(page)">
@@ -48,12 +48,12 @@
                 </pagination-link>
 
                 <template v-if="showDots('right')">
-                    <pagination-link key="page_divider_right" class="sm:dt-hidden">
+                    <pagination-link key="page_divider_right" class="sm:dt-jg-hidden">
                         ...
                     </pagination-link>
 
                     <pagination-link :key="`page_${totalPages}`"
-                                     class="sm:dt-hidden"
+                                     class="sm:dt-jg-hidden"
                                      :disabled="isInLastPage"
                                      :active="isInLastPage"
                                      @click.prevent="gotoLastPage">
@@ -62,12 +62,12 @@
                 </template>
 
                 <pagination-link key="page_next" :disabled="isInLastPage" @click.prevent="gotoNextPage">
-                    <span class="dt-sr-only">Next</span>
+                    <span class="dt-jg-sr-only">Next</span>
                     &rsaquo;
                 </pagination-link>
 
-                <pagination-link key="page_last" :disabled="isInLastPage" class="dt-rounded-r-md" @click.prevent="gotoLastPage">
-                    <span class="dt-sr-only">Go to Last</span>
+                <pagination-link key="page_last" :disabled="isInLastPage" class="dt-jg-rounded-r-md" @click.prevent="gotoLastPage">
+                    <span class="dt-jg-sr-only">Go to Last</span>
                     &raquo;
                 </pagination-link>
             </PaginationButtons>

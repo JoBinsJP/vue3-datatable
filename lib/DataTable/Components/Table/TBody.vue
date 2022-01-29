@@ -1,5 +1,5 @@
 <template>
-    <tbody class="dt__table__tbody">
+    <tbody class="dt-jg-table-tbody">
         <slot/>
     </tbody>
 </template>

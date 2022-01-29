@@ -1,6 +1,6 @@
 <template>
-    <thead class="dt__table__thead dt-bg-gray-50">
-        <tr class="dt__table__thead__tr">
+    <thead class="dt-jg-table-thead dt-jg-bg-gray-50">
+        <tr class="dt-jg-table-thead-tr">
             <slot/>
         </tr>
     </thead>

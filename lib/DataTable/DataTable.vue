@@ -1,15 +1,15 @@
 <template>
-    <div class="data-table dt-flex dt-flex-col">
-        <div class="dt-align-middle dt-min-w-full">
+    <div class="data-table dt-jg-flex dt-jg-flex-col">
+        <div class="dt-jg-align-middle dt-jg-min-w-full">
             <Filter v-if="filter && topPagination" :search="tableQuery.search || ''" @input="handleOnSearchChange"/>
-            <div class="dt__wrapper dt-relative" :class="{'sm:dt-rounded-lg': rounded}">
+            <div class="dt-jg-wrapper dt-jg-relative" :class="{'sm:dt-jg-rounded-lg': rounded}">
                 <slot v-if="loading" name="loading">
                     <Loading/>
                 </slot>
                 <template v-if="tableQuery.per_page">
                     <TopPaginationWrapper v-if="showPagination" :with-pagination="topPagination">
                         <Pagination v-if="topPagination"
-                                    class="dt-flex-1 dt-pr-4"
+                                    class="dt-jg-flex-1 dt-jg-pr-4"
                                     :total="totalData"
                                     :current-page="tableQuery.page"
                                     :per-page="parseInt(tableQuery.per_page.toString())"
@@ -17,11 +17,11 @@
                             <template #pagination-info="paginationInfo">
                                 <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
                                     Showing
-                                    <span class="dt-font-medium" v-text="paginationInfo.start"/>
+                                    <span class="dt-jg-font-medium" v-text="paginationInfo.start"/>
                                     to
-                                    <span class="dt-font-medium" v-text="paginationInfo.end"/>
+                                    <span class="dt-jg-font-medium" v-text="paginationInfo.end"/>
                                     of
-                                    <span class="dt-font-medium" v-text="paginationInfo.total"/>
+                                    <span class="dt-jg-font-medium" v-text="paginationInfo.total"/>
                                     results.
                                 </slot>
                             </template>
@@ -35,7 +35,7 @@
                 <TableWrapper>
                     <THead>
                         <slot v-if="sn" name="thead-sn">
-                            <TableHeadCell class="dt__table__thead__th_sn" v-text="`S.N.`"/>
+                            <TableHeadCell class="dt-jg-table-thead-th-sn" v-text="`S.N.`"/>
                         </slot>
 
                         <slot name="thead" :column="tableColumns">
@@ -54,7 +54,7 @@
                                   :striped="striped"
                                   @clicked="rowClickHandler(row)">
                             <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
-                                <TableBodyCell class="dt__table__tbody_td_sn" v-text="rowIndex + 1 + paginatedRowIndex"/>
+                                <TableBodyCell class="dt-jg-table-tbody-td-sn" v-text="rowIndex + 1 + paginatedRowIndex"/>
                             </slot>
 
                             <slot name="tbody" :index="rowIndex" :row="row">
@@ -79,11 +79,11 @@
                             <template #pagination-info="paginationInfo">
                                 <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
                                     Showing
-                                    <span class="dt-font-medium" v-text="paginationInfo.start"/>
+                                    <span class="dt-jg-font-medium" v-text="paginationInfo.start"/>
                                     to
-                                    <span class="dt-font-medium" v-text="paginationInfo.end"/>
+                                    <span class="dt-jg-font-medium" v-text="paginationInfo.end"/>
                                     of
-                                    <span class="dt-font-medium" v-text="paginationInfo.total"/>
+                                    <span class="dt-jg-font-medium" v-text="paginationInfo.total"/>
                                     results.
                                 </slot>
                             </template>

@@ -1,8 +1,8 @@
 <template>
-    <div class="dt__loading dt-absolute dt-h-full dt-w-full">
-        <div class="dt-flex dt-justify-center dt-items-center">
-            <div class="dt__loading_item dt-absolute dt-w-20 dt-h-20 dt-rounded-full"></div>
-            <div class="dt__loading_item dt-absolute dt-w-20 dt-h-20 dt-rounded-full"></div>
+    <div class="dt-jg-loading dt-jg-absolute dt-h-full dt-jg-w-full">
+        <div class="dt-jg-flex dt-jg-justify-center dt-jg-items-center">
+            <div class="dt-jg-loading-item dt-jg-absolute dt-jg-w-20 dt-jg-h-20 dt-jg-rounded-full"></div>
+            <div class="dt-jg-loading-item dt-jg-absolute dt-jg-w-20 dt-jg-h-20 dt-jg-rounded-full"></div>
         </div>
     </div>
 </template>
@@ -18,10 +18,10 @@
 <style lang="scss" scoped>
     $size: 75px;
 
-    .dt__loading {
-        --dt-pagination-loader-circle1: #74acf3;
-        --dt-pagination-loader-circle2: #88c3ee;
-        --dt-animation-duration: 3000ms;
+    .dt-jg-loading {
+        --dt-jg-pagination-loader-circle1: #74acf3;
+        --dt-jg-pagination-loader-circle2: #88c3ee;
+        --dt-jg-animation-duration: 3000ms;
 
         background: rgba(160, 210, 239, 0.14);
         z-index: 1;
@@ -31,22 +31,22 @@
             height: 400px;
         }
 
-        .dt__loading_item {
-            background: var(--dt-clr-spinner);
-            animation: dt__doubleSpinner var(--dt-animation-duration) ease-in-out infinite;
+        .dt-jg-loading-item {
+            background: var(--dt-jg-clr-spinner);
+            animation: dt-jg-doubleSpinner var(--dt-jg-animation-duration) ease-in-out infinite;
 
             &:nth-of-type(1) {
-                --dt-clr-spinner: var(--dt-pagination-loader-circle1);
+                --dt-jg-clr-spinner: var(--dt-jg-pagination-loader-circle1);
             }
 
             &:nth-of-type(2) {
-                --dt-clr-spinner: var(--dt-pagination-loader-circle2);
-                animation-delay: calc(var(--dt-animation-duration) / -2);
+                --dt-jg-clr-spinner: var(--dt-jg-pagination-loader-circle2);
+                animation-delay: calc(var(--dt-jg-animation-duration) / -2);
             }
         }
     }
 
-    @keyframes dt__doubleSpinner {
+    @keyframes dt-jg-doubleSpinner {
         0%, 100% {
             transform: scale(0.25);
             opacity: 1;

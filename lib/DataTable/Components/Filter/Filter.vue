@@ -1,12 +1,12 @@
 <template>
-    <div class="dt__filter dt-mb-3 dt-w-full">
-        <div class="dt-w-64">
-            <label for="email" class="dt-sr-only">Search</label>
-            <div class="dt-relative dt-rounded-md dt-shadow-sm">
+    <div class="dt-jg-mb-3 dt-jg-w-full">
+        <div class="dt-jg-w-64">
+            <label for="email" class="dt-jg-sr-only">Search</label>
+            <div class="dt-jg-relative dt-jg-rounded-md dt-jg-shadow-sm">
                 <SearchInput :value="search" @input="emitirEvento($event)"/>
 
-                <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
-                    <SearchIcon class="dt-text-gray-400"/>
+                <div class="dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none">
+                    <SearchIcon class="dt-jg-text-gray-400"/>
                 </div>
             </div>
         </div>

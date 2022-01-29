@@ -1,10 +1,10 @@
 <template>
-    <tr class="dt__table__row"
+    <tr class="dt-jg-table-jgrow"
         :class="{
-            'dt-bg-white': !striped || striped && formattedRowIndex % 2 === 0,
-            'dt-bg-gray-50': striped && formattedRowIndex % 2,
-            'hover:dt-bg-gray-100': hoverable,
-            'dt-cursor-pointer': hoverable && !nonClickable
+            'dt-jg-bg-white': !striped || striped && formattedRowIndex % 2 === 0,
+            'dt-jg-bg-gray-50': striped && formattedRowIndex % 2,
+            'hover:dt-jg-bg-gray-100': hoverable,
+            'dt-jg-cursor-pointer': hoverable && !nonClickable
         }"
         @click.stop="$emit('clicked')">
         <slot/>

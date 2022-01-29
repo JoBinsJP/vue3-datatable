@@ -1,6 +1,6 @@
 <template>
-    <div class="dt__pagination_wrapper--top md:dt-flex xs:dt-flex-col dt-items-center"
-         :class="{'dt-bg-white dt-py-4 dt-px-4 sm:dt-px-6': withPagination}">
+    <div class="dt-jg-pagination-wrapper--top md:dt-jg-flex xs:dt-jg-flex-col dt-jg-items-center"
+         :class="{'dt-jg-bg-white dt-jg-py-4 dt-jg-px-4 sm:dt-jg-px-6': withPagination}">
         <slot/>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-    <div class="dt__pagination__info">
-        <p class="dt-text-sm dt-text-gray-700">
+    <div class="dt-jg-pagination-info">
+        <p class="dt-jg-text-sm dt-jg-text-gray-700">
             <slot/>
         </p>
     </div>

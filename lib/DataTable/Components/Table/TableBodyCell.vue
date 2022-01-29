@@ -1,5 +1,5 @@
 <template>
-    <td class="dt__table__tbody_td dt-px-6 dt-py-4 dt-whitespace-nowrap dt-text-sm dt-font-medium dt-text-gray-500">
+    <td class="dt-jg-table-tbody-td dt-jg-px-6 dt-jg-py-4 dt-jg-whitespace-nowrap dt-jg-text-sm dt-jg-font-medium dt-jg-text-gray-500">
         <slot/>
     </td>
 </template>
