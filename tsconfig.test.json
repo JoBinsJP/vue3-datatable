@@ -1,6 +1,6 @@
 {
     "extends": "./tsconfig.json",
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue","lib/DataTable/**/*.vue", "lib/DataTable/**/*.ts", "lib/DataTable/**/*.d.ts", "lib/DataTable/**/*.tsx"],
+    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "lib/DataTable/**/*.vue", "lib/DataTable/**/*.ts", "lib/DataTable/**/*.d.ts", "lib/DataTable/**/*.tsx"],
     "compilerOptions": {
         "outDir": "dist",
         "declarationDir": "dist",
