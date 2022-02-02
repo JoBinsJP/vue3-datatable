@@ -1076,6 +1076,11 @@ csstype@^2.6.8:
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.17.tgz#4cf30eb87e1d1a005d8b6510f95292413f6a1c0e"
   integrity sha512-u1wmTI1jJGzCJzWndZo8mk4wnPTZd1eOIYTYvuEyOQGfmDl3TrabCCfKnOC86FZwW/9djqTl933UF/cS425i9A==
 
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
+
 debug@^4.0.0, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.3.2.tgz#f0a49c18ac8779e31d4a0c6029dfb76873c7428b"
@@ -3891,6 +3896,13 @@ vue-tsc@^0.3.0:
   integrity sha512-zaDRZBxwRIz1XjhNP92FqugG71st6BUMnA2EwPeXrAyzbEYVRz6TezNFceYl3QYqqN8CtaxbqUhaQEDj/ntoCA==
   dependencies:
     vscode-vue-languageservice "^0.27.0"
+
+vue3-date-time-picker@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/vue3-date-time-picker/-/vue3-date-time-picker-2.5.0.tgz#aeeea4f728a44763b7d4a827bdea2ef6a6e8bb79"
+  integrity sha512-fGQaQAZLn2wmtrkfQj8c/1b5WgmKzYLp9z3w5D4nTEcH6ibkoD1YAK21AkpJN4fTuaqWkztEJgIimGSuCSJeqA==
+  dependencies:
+    date-fns "^2.28.0"
 
 vue@^3.1.2:
   version "3.2.7"

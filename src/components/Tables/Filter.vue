@@ -3,6 +3,7 @@
                 :pagination="pagination"
                 :query="query"
                 :loading="isLoading"
+                :definitionsFilter="filters"
                 top-pagination
                 striped
                 sn
@@ -41,6 +42,7 @@
 
 <script lang="ts">
     import axios from "axios"
+import { FilterDefinition, TypeControl, TypeResult } from "../../../lib/DataTable/@types/FilterDefinition"
     import {
         defineComponent,
         ref,
@@ -50,6 +52,7 @@
         TableBody,
         TableHead,
     }            from "../../../lib/DataTable"
+    import 'vue3-date-time-picker/dist/main.css'
 
     const Filter = defineComponent({
         components: { TableBody, TableHead, DataTable },
@@ -60,6 +63,13 @@
             const query = ref({
                 search: "test",
             })
+            const filters = ref([] as FilterDefinition[]);
+            const filter: FilterDefinition = {code:'1',fieldName:'Name',typeControl: TypeControl.text,defaultVauel:"test",typeData:TypeResult.text};
+            filters.value.push(filter)
+            const filter2: FilterDefinition = {code:'2',fieldName:'Airline',format:'yyyy-MM-dd HH:mm',typeControl: TypeControl.date,defaultVauel:new Date(),typeData:TypeResult.date};
+            filters.value.push(filter2)
+            const filter3: FilterDefinition = {code:'3',fieldName:'Trips',format:'HH:mm',typeControl: TypeControl.hour,defaultVauel:{hours: new Date().getHours(),minutes:new Date().getMinutes()},typeData:TypeResult.text};
+            filters.value.push(filter3)
             const isLoading = ref(false)
 
             const loadData = async (query) => {
@@ -81,7 +91,7 @@
 
             const formatUrl = (url: string) => url.startsWith("http") ? url : `http://${url}`
 
-            return { tableData, pagination, query, isLoading, loadData, formatAirline, formatUrl }
+            return { tableData, pagination, query,filters, isLoading, loadData, formatAirline, formatUrl }
         },
     })
 

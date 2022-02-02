@@ -296,6 +296,10 @@
     min-width: 100%;
 }
 
+.dt-jg-w-auto {
+    width: auto;
+}
+
 .dt-jg-divide-y > * + * {
     --jg-divide-y-reverse: 0;
     border-top-width: calc(1px * calc(1 - var(--jg-divide-y-reverse)));

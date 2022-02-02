@@ -3,6 +3,9 @@
         <tr class="dt-jg-table-thead-tr">
             <slot/>
         </tr>
+        <tr class="dt-jg-table-thead-tr">
+            <slot name="th-header-filter"/>
+        </tr>
     </thead>
 </template>
 

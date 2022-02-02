@@ -2,8 +2,10 @@
     <data-table :rows="tableData"
                 :pagination="pagination"
                 sn
+                enabledCheckBoxSelection="true"
                 hoverable
                 striped
+                @dataSelected="dataSelected"
                 @rowClicked="rowClickHandler"
                 @loadData="loadData">
         <template #thead>
@@ -78,15 +80,18 @@
 
             const formatUrl = (url: string) => url.startsWith("http") ? url : `http://${url}`
 
-            const rowClickHandler = (row) => {
+            const rowClickHandler = () => {
                 console.log("Row Clicked", row)
             }
 
             const save = () => {
                 console.log("Save Clicked")
             }
+            const dataSelected = (rowsSelected)=>{
+                console.log(rowsSelected)
+            }
 
-            return { tableData, pagination, loadData, formatAirline, formatUrl, rowClickHandler, save }
+            return { tableData, pagination, loadData, formatAirline, formatUrl, rowClickHandler, save,dataSelected }
         },
     })
 
