@@ -1,7 +1,7 @@
 <template>
     <div class="dt-jg-w-64">
         <label :for="defincion.code" class="dt-jg-sr-only">Search</label>
-        <div class="dt-jg-relative dt-jg-rounded-md dt-jg-shadow-sm">
+        <div class="dt-jg-filter dt-jg-relative dt-jg-rounded-md dt-jg-shadow-sm">
             <template v-if="defincion.typeControl === 2">
                 <SearchInput :value="defincion.defaultVauel" @input="emitirEvento($event.target.value,defincion)"/>
 

@@ -1,6 +1,6 @@
 export interface FilterDefinition {
     code: string;
-    fieldName: string;
+    indice: number;
     format?: string;
     typeControl: TypeControl;
     dataControl?: any[];
