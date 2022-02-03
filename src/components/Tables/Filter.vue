@@ -64,11 +64,11 @@
                 search: "test",
             })
             const filters = ref([] as FilterDefinition[]);
-            const filter: FilterDefinition = {code:"1",fieldName:"Name",typeControl: TypeControl.text,defaultVauel:"test",typeData:TypeResult.text};
+            const filter: FilterDefinition = {code:"1",indice:1,typeControl: TypeControl.text,defaultVauel:"test",typeData:TypeResult.text};
             filters.value.push(filter)
-            const filter2: FilterDefinition = {code:"2",fieldName:"Airline",format:"yyyy-MM-dd HH:mm",typeControl: TypeControl.date,defaultVauel:new Date(),typeData:TypeResult.date};
+            const filter2: FilterDefinition = {code:"2",indice:2,format:"yyyy-MM-dd HH:mm",typeControl: TypeControl.date,defaultVauel:new Date(),typeData:TypeResult.date};
             filters.value.push(filter2)
-            const filter3: FilterDefinition = {code:"3",fieldName:"Trips",format:"HH:mm",typeControl: TypeControl.hour,defaultVauel:{hours: new Date().getHours(),minutes:new Date().getMinutes()},typeData:TypeResult.text};
+            const filter3: FilterDefinition = {code:"3",indice:3,format:"HH:mm",typeControl: TypeControl.hour,defaultVauel:{hours: new Date().getHours(),minutes:new Date().getMinutes()},typeData:TypeResult.text};
             filters.value.push(filter3)
             const isLoading = ref(false)
 

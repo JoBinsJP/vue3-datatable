@@ -46,8 +46,8 @@
                         </slot>
                         <template #th-header-filter>
                             <slot name="thead-filter" :filters="filters">
-                                <template v-for="(label,key) in tableColumns" :key="`datatable-thead-filter-th-${key}`">
-                                    <TableHeadFilter :filterEnable="filter && topPagination" :filterDefinition="buscarDefinicionFiltro(label)" @input="handleOnSearchChange"/>
+                                <template v-for="(label,key,index) in tableColumns" :key="`datatable-thead-filter-th-${key}`">
+                                    <TableHeadFilter :filterEnable="filter && topPagination" :filterDefinition="buscarDefinicionFiltro(index)" @input="handleOnSearchChange"/>
                                 </template>
                             </slot>
                         </template>
@@ -215,8 +215,8 @@
                 emit("loadData", tableQuery.value)
             }
 
-            const buscarDefinicionFiltro = ($fieldName) => {
-                return filters.value.find(d=> d.fieldName === $fieldName);
+            const buscarDefinicionFiltro = ($index) => {
+                return filters.value.find((d)=> d.indice === $index);
             }
 
             watch(() => ({ ...tableQuery.value }), () => {
