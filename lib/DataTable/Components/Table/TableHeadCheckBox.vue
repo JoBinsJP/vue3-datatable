@@ -26,30 +26,32 @@
                 
                 emit("selectAll",checkBox.value?.checked || false)
             }
-            watch([checkedWatch, indeterminateWatch], 
+            watch(
+                [checkedWatch, indeterminateWatch], 
                 ([check, indeterminate]) => {
-                if(!indeterminate){
-                    if(checkBox.value){
-                        checkBox.value.checked = check;
+                    if(!indeterminate){
+                        if(checkBox.value){
+                            checkBox.value.checked = check;
+                        }
                     }
-                }
-                if(checkBox.value){
-                    checkBox.value.indeterminate = indeterminate;   
-                }
+                    if(checkBox.value){
+                        checkBox.value.indeterminate = indeterminate;   
+                    }
                 
-                /*if(checkBox.value){
-                    console.log(checkBox.value.checked)
-                    console.log(checkBox.value.indeterminate)
-                }*/
-            }, {
-                immediate: true,
-                deep:true
-            })
+                    /*if(checkBox.value){
+                        console.log(checkBox.value.checked)
+                        console.log(checkBox.value.indeterminate)
+                    }*/
+                }, {
+                    immediate: true,
+                    deep:true,
+                },
+            )
 
             return {
                 checkBox,
-                checkBoxClickHandler
+                checkBoxClickHandler,
             }
-        }
+        },
     })
 </script>

@@ -80,7 +80,7 @@
 
             const formatUrl = (url: string) => url.startsWith("http") ? url : `http://${url}`
 
-            const rowClickHandler = () => {
+            const rowClickHandler = (row) => {
                 console.log("Row Clicked", row)
             }
 

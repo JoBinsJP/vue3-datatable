@@ -7,7 +7,8 @@
         "declarationDir": "dist",
         "declaration": true,
         "paths": {
-            "@/lib/*": ["lib/DataTable/*"]
+            "@/lib/*": ["lib/DataTable/*"],
+            "@/type/*": ["lib/DataTable/@types/*"]
         }
     }
 }

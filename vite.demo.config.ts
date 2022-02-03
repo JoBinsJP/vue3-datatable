@@ -13,6 +13,7 @@ export default defineConfig({
         alias:{
             "@/src": resolve(__dirname, "./src"),
             "@/lib": resolve(__dirname, "./lib/DataTable"),
+            "@/type": resolve(__dirname, "./lib/DataTable/@types"),
         },
     },
     server: {

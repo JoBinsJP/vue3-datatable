@@ -10,10 +10,15 @@
                 </div>
             </template>
             <template v-if="defincion.typeControl === 1">
-                <Datepicker :format="defincion.format" id="control" v-model="defincion.defaultVauel" @update:modelValue="emitirEvento($event,defincion)" timePicker />
+                <Datepicker 
+                    timePicker 
+                    :format="defincion.format" 
+                    id="control" 
+                    v-model="defincion.defaultVauel" 
+                    @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             <template v-if="defincion.typeControl === 0">
-                <Datepicker :format="defincion.format" id="control" v-model="defincion.defaultVauel" @update:modelValue="emitirEvento($event,defincion)" />
+                <Datepicker :format="defincion.format" id="control" v-model="defincion.defaultVauel" @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             
         </div>
@@ -22,7 +27,7 @@
 
 <script lang="ts">
     import { FilterDefinition, TypeControl } from "../../@types/FilterDefinition"
-    import Datepicker from 'vue3-date-time-picker';
+    import Datepicker from "vue3-date-time-picker";
     import { computed, defineComponent, PropType } from "vue"
     import SearchIcon          from "./SearchIcon.vue"
     import SearchInput         from "./SearchInput.vue"
@@ -54,9 +59,9 @@
         setup(props){
             const defincion = computed(()=>props.definicionFiltro as FilterDefinition);
             return {
-                defincion
+                defincion,
             }
-        }
+        },
     })
 </script>
 

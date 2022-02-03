@@ -9,8 +9,7 @@ export default defineConfig({
     plugins: [vue({
         isProduction: true,
     }),dts({
-        outputDir: "dist/types",
-        include: ["lib/DataTable/**/*.ts"],
+        outputDir: "dist",
         exclude: ["src"],
         staticImport: true,
         insertTypesEntry: true,
@@ -20,6 +19,7 @@ export default defineConfig({
         alias:{
             "@/src": path.resolve(__dirname, "./src"),
             "@/lib": path.resolve(__dirname, "./lib/DataTable"),
+            "@/type": path.resolve(__dirname, "./lib/DataTable/@types"),
         },
     },
     build: {

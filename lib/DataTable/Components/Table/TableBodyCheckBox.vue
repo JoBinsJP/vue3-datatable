@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, SetupContext, watch } from "vue"
+    import { computed, defineComponent, ref, SetupContext, watch } from "vue"
 
     export default defineComponent({
         name: "TableBodyCheckBox",
@@ -24,22 +24,24 @@ import { computed, defineComponent, ref, SetupContext, watch } from "vue"
                 
                 emit("selectRow",checkBox.value?.checked || false,index.value)
             }
-            watch(checked, 
+            watch(
+                checked, 
                 (_checked) => {
                     if(checkBox.value){
                         checkBox.value.checked = _checked
                     }
                     //console.log(props.elementsSelected)
-            }, {
-                immediate: true,
-                deep:true
-            })
+                }, {
+                    immediate: true,
+                    deep:true,
+                },
+            )
             return {
                 checked,
                 checkBox,
                 index,
-                checkBoxClickHandler
+                checkBoxClickHandler,
             }
-        }
+        },
     })
 </script>

@@ -19,10 +19,10 @@
         name: "TableHeadFilter",
         props: {
             filterDefinition: { type: Object as PropType<FilterDefinition> || null, required: true,default:null },
-            filterEnable: { type: Boolean, required: true }
+            filterEnable: { type: Boolean, required: true },
         },
         components:{
-            Filter
+            Filter,
         },
         emits: ["input"],
         setup(props, { emit }: SetupContext) {
@@ -34,8 +34,8 @@
 
             return {
                 filterDef,
-                handleOnSearchChange
+                handleOnSearchChange,
             }
-        }
+        },
     })
 </script>

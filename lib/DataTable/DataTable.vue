@@ -34,7 +34,7 @@
                 <TableWrapper>
                     <THead>
                         <slot v-if="enabledCheckBoxSelection" name="thead-selectedRow">
-                            <TableHeadCheckBox :rows="tableRows" :elements-selected="selectedRowIndex" @selectAll="selectAllHandler" />
+                            <TableHeadCheckBox :rows="tableRows" :elements-selected="selectedRowIndex" @selectAll="selectAllHandler"/>
                         </slot>
 
                         <slot v-if="sn" name="thead-sn">
@@ -46,8 +46,8 @@
                         </slot>
                         <template #th-header-filter>
                             <slot name="thead-filter" :filters="filters">
-                                <template v-for="(label, key) in tableColumns">
-                                    <TableHeadFilter :filterEnable="filter && topPagination" :filterDefinition="buscarDefinicionFiltro(label)" @input="handleOnSearchChange" />
+                                <template v-for="(label,key) in tableColumns" :key="`datatable-thead-filter-th-${key}`">
+                                    <TableHeadFilter :filterEnable="filter && topPagination" :filterDefinition="buscarDefinicionFiltro(label)" @input="handleOnSearchChange"/>
                                 </template>
                             </slot>
                         </template>
@@ -63,7 +63,7 @@
                                   @clicked="rowClickHandler(row)">
 
                             <slot v-if="enabledCheckBoxSelection" name="tbody-selectedRow">
-                                <TableBodyCheckBox :row-index="rowIndex" :elements-selected="selectedRowIndex" @selectRow="selectRowHandler" />
+                                <TableBodyCheckBox :row-index="rowIndex" :elements-selected="selectedRowIndex" @selectRow="selectRowHandler"/>
                             </slot>
                             <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
                                 <TableBodyCell class="dt-jg-table-tbody-td-sn" v-text="rowIndex + 1 + paginatedRowIndex"/>
@@ -119,7 +119,6 @@
     }                              from "vue"
     import { PaginationProps }     from "./@types/PaginationProps"
     import { TableQuery }          from "./@types/TableQuery"
-    import Filter                  from "./Components/Filter/Filter.vue"
     import Loading                 from "./Components/Loading.vue"
     import BottomPaginationWrapper from "./Components/Pagination/BottomPaginationWrapper.vue"
     import Pagination              from "./Components/Pagination/Pagination.vue"
@@ -138,8 +137,7 @@
         debounce,
         formatString,
     }                              from "./utils/helpers"
-import TableHeadCheckBox1 from "./Components/Table/TableHeadCheckBox.vue"
-import { FilterDefinition } from "./@types/FilterDefinition"
+    import { FilterDefinition } from "./@types/FilterDefinition"
 
     const PER_PAGE = 10
 
@@ -149,24 +147,21 @@ import { FilterDefinition } from "./@types/FilterDefinition"
         name: "DataTable",
 
         components: {
-    TableHeadCell,
-    TableHeadCheckBox,
-    TableBodyCell,
-    TableBodyCheckBox,
-    TableHeadFilter,
-    TBody,
-    TableRow,
-    THead,
-    BottomPaginationWrapper,
-    TableWrapper,
-    PaginationSize,
-    TopPaginationWrapper,
-    Filter,
-    Loading,
-    Pagination,
-    TableHeadCheckBox1
-},
-
+            TableHeadCell,
+            TableHeadCheckBox,
+            TableBodyCell,
+            TableBodyCheckBox,
+            TableHeadFilter,
+            TBody,
+            TableRow,
+            THead,
+            BottomPaginationWrapper,
+            TableWrapper,
+            PaginationSize,
+            TopPaginationWrapper,
+            Loading,
+            Pagination,
+        },
         props: {
             rows: { type: Array, required: true },
             columns: { type: Object, required: false, default: null },
@@ -191,7 +186,7 @@ import { FilterDefinition } from "./@types/FilterDefinition"
         setup(props, { emit }: SetupContext) {
             const tableQuery = ref<TableQuery>({
                 page: props.pagination?.page || 1,
-                per_page: props.pagination?.per_page || PER_PAGE
+                per_page: props.pagination?.per_page || PER_PAGE,
             })
             const filters = computed(() => props.definitionsFilter || [])
             const selectedRowIndex =ref<number[]>([]);

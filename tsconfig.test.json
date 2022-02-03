@@ -7,7 +7,8 @@
         "declaration": true,
         "paths": {
             "@/src/*": ["src/*"],
-            "@/lib/*": ["lib/DataTable/*"]
+            "@/lib/*": ["lib/DataTable/*"],
+            "@/type/*": ["lib/DataTable/@types/*"]
         }
     }
 }
