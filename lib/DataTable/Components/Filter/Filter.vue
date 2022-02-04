@@ -45,7 +45,7 @@
         methods:{
             emitirEvento($data,$filterData){
                 //console.log($data)
-                this.$emit("input",$data,$filterData)
+                this.$emit("input",{value:$data,filterData:$filterData})
             },
             formatDatePicker(date: Date,defnition: FilterDefinition){
                 if(defnition.typeControl === TypeControl.date){

@@ -74,6 +74,7 @@
 
             const loadData = async (query) => {
                 isLoading.value = true
+                console.log(query);
                 const { data: { data, totalPassengers } } = await axios.get("https://api.instantwebtools.net/v1/passenger", {
                     params: {
                         page: (query.page - 1) < 0 ? 0 : query.page - 1,

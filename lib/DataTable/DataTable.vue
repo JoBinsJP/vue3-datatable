@@ -230,7 +230,7 @@
                 tableQuery.value.page = page
             }
 
-            const handleOnSearchChange = debounce((value,filterData) => {
+            const handleOnSearchChange = debounce(({value,filterData}) => {
                 tableQuery.value = { ...tableQuery.value, page: 1, dataCriteria: {value:value,filterDefinition:filterData} }
             })
 
