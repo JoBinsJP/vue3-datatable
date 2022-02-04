@@ -28,8 +28,8 @@
         setup(props, { emit }: SetupContext) {
             const filterDef = computed<FilterDefinition | null>(() => props.filterDefinition || null)
 
-            const handleOnSearchChange = debounce((value) => {
-                emit("input",value)
+            const handleOnSearchChange = debounce((value,filter) => {
+                emit("input",value,filter)
             })
 
             return {
