@@ -18,10 +18,22 @@
                     @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             <template v-if="defincion.typeControl === 0">
-                <Datepicker :format="defincion.format" id="control" :enableTimePicker="false" v-model="defincion.defaultVauel" @update:modelValue="emitirEvento($event,defincion)"/>
+                <Datepicker 
+                    :format="defincion.format" 
+                    id="control" 
+                    :enableTimePicker="false" 
+                    v-model="defincion.defaultVauel" 
+                    @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             <template v-if="defincion.typeControl === 3">
-                <Datepicker :format="defincion.format" range :partialRange="false" :enableTimePicker="false" id="control" v-model="defincion.defaultVauel" @update:modelValue="emitirEvento($event,defincion)"/>
+                <Datepicker 
+                    :format="defincion.format" 
+                    range 
+                    :partialRange="false" 
+                    :enableTimePicker="false" 
+                    id="control" 
+                    v-model="defincion.defaultVauel" 
+                    @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             
         </div>
@@ -34,12 +46,11 @@
     import { computed, defineComponent, PropType } from "vue"
     import SearchIcon          from "./SearchIcon.vue"
     import SearchInput         from "./SearchInput.vue"
-    import SearchDateRange         from "./SearchDateRange.vue"
 
     export default defineComponent({
         name: "Filter",
 
-        components: { SearchInput, SearchIcon,Datepicker,SearchDateRange },
+        components: { SearchInput, SearchIcon,Datepicker },
 
         props: {
             definicionFiltro: { type: Object as PropType<FilterDefinition>, required: false },

@@ -1,5 +1,6 @@
 <template>
-    <div style="padding-right: 1.6rem !important;" class=" dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
+    <div></div>
+    <!-- <div style="padding-right: 1.6rem !important;" class=" dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
                                     dt-jg-rounded-md dt-jg-w-full dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white dt-jg-truncate" @click="closeDropDown">
         {{formatDateTime(_value1)}} To {{formatDateTime(_value2)}}
     </div>
@@ -16,11 +17,11 @@
     <div class="dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none">
         <DropDownDownIcon v-if="open"  class="dt-jg-text-gray-400" />
         <DropDownUpIcon v-if="!open"  class="dt-jg-text-gray-400" />
-    </div>
+    </div> -->
 </template>
 
 <script lang="ts">
-    import { computed, defineComponent, ref } from "vue"
+    /*import { computed, defineComponent, ref } from "vue"
     import SearchInput         from "./SearchInput.vue"
     import DropDownDownIcon          from "./DropDownDownIcon.vue"
     import DropDownUpIcon          from "./DropDownUpIcon.vue"
@@ -78,5 +79,5 @@
                 formatDateTime,
             }
         },
-    })
+    })*/
 </script>

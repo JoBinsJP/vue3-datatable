@@ -13,14 +13,15 @@ export declare enum TypeControl {
     date = 0,
     hour = 1,
     text = 2,
-    textoMultiline = 3,
-    password = 4,
-    hidenField = 5,
-    checkBox = 6,
-    radioButton = 7,
-    selectionFile = 8,
-    comboBox = 9,
-    number = 10
+    dateRange = 3,
+    textoMultiline = 4,
+    password = 5,
+    hidenField = 6,
+    checkBox = 7,
+    radioButton = 8,
+    selectionFile = 9,
+    comboBox = 10,
+    number = 11
 }
 export declare enum TypeResult {
     date = 0,

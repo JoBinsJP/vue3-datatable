@@ -15,8 +15,8 @@
         name: "SearchInput",
 
         props: {
-            value: { type: String, required: false },
-            enabled:{type: Boolean, required: false, default:true}
+            value: { type: String, required: true },
+            enabled:{type: Boolean, required: false, default:true},
         },
     })
 </script>
