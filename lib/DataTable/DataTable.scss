@@ -98,7 +98,6 @@
     background-color: rgba(229, 231, 235, var(--jg-bg-opacity));
 }
 
-
 .dt-jg-pr-3 {
     padding-right: 0.75rem;
 }
@@ -336,6 +335,58 @@
 
 .dt-jg-flex-1 {
     flex: 1 1 0%;
+}
+
+.dt-jg-rotate-element-180-grad{
+    transform: rotate(180deg);
+}
+
+.dt-jg-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.dt-jg-text-ellipsis{
+    text-overflow: ellipsis;
+}
+.dt-jg-text-clip{
+    text-overflow: clip;
+}
+
+.hover\:dt-jg-text-ellipsis{
+    text-overflow: ellipsis;
+}
+.hover\:dt-jg-text-clip{
+    text-overflow: clip;
+}
+
+.dt-jg-li {
+    display: block;
+    transition-duration: 0.5s;
+}
+
+.hover\:dt-jg-li {
+    cursor: pointer;
+}
+
+.dt-jg-ul {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    transition: all 0.5s ease;
+    left: 0;
+    display: none;
+}
+
+.dt-jg-dropdown-open {
+    visibility: visible;
+    opacity: 1;
+    display: block;
+}
+
+.dt-jg-ul .dt-jg-li {
+    clear: both;
+    width: 100%;
 }
 
 @media (min-width: 640px){

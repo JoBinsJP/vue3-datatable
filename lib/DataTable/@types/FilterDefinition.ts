@@ -13,6 +13,7 @@ export enum TypeControl{
     date,
     hour,
     text,
+    dateRange,
     textoMultiline,
     password,
     hidenField,

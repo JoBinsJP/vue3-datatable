@@ -84,6 +84,7 @@
         }
     },
     "dependencies": {
+        "moment": "^2.29.1",
         "vue3-date-time-picker": "^2.5.0"
     }
 }
