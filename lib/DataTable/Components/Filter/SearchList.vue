@@ -3,7 +3,7 @@
         <PerfectScrollbar 
             @click="closeDropDown" 
             :options="options" 
-            style="padding-right: 1.6rem !important;height: 2.50rem;" 
+            style="padding-right: 1.6rem !important;height: 2.45rem;" 
             class="dt-jg-scroll-container dt-jg-flex dt-jg-flex-row dt-jg-border dt-jg-border-gray-300 
                             dt-jg-rounded-md dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white">
             <div class="dt-jg-tag dt-jg-mx-0.5 dt-jg-text-gray-400" v-for="(item,key) in _selectedList" :key="key">
