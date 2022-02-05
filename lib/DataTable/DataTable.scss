@@ -9,6 +9,10 @@
     --jg-shadow: 0 0 #0000;
 }
 
+*[class*="border"]{
+    border-style: solid;
+}
+
 .focus\:dt-jg-ring-inset:focus {
     --jg-ring-inset: inset;
 }
@@ -409,6 +413,7 @@
 }
 .dt-jg-tag{
     --jg-border-opacity: 1;
+    border-style: solid;
     border-color: rgba(209, 213, 219, var(--jg-border-opacity));
     border-width: 0.01rem;
     padding-left: 0.25rem;
@@ -418,6 +423,7 @@
     width: 5.5rem;
     text-align: left;
     display:inline-block;
+    margin: auto 0 auto 0.25rem;
 }
 
 .dt-jg-scroll-container {
