@@ -1,6 +1,6 @@
 {
     "name": "@jagjerez/vue3-datatable",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "DataTable component with basic pagination, search filters etc for Vue3",
     "keywords": [
         "datatable",
@@ -85,6 +85,7 @@
     },
     "dependencies": {
         "moment": "^2.29.1",
-        "vue3-date-time-picker": "^2.5.0"
+        "vue3-date-time-picker": "^2.5.0",
+        "vue3-perfect-scrollbar": "^1.6.0"
     }
 }

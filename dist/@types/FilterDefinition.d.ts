@@ -1,7 +1,9 @@
+import FilterDataList from "./FilterDataList";
 export interface FilterDefinition {
     code: string;
     indice: number;
     format?: string;
+    list?: FilterDataList[];
     typeControl: TypeControl;
     dataControl?: any[];
     defaultVauel?: any;
@@ -14,14 +16,15 @@ export declare enum TypeControl {
     hour = 1,
     text = 2,
     dateRange = 3,
-    textoMultiline = 4,
-    password = 5,
-    hidenField = 6,
-    checkBox = 7,
-    radioButton = 8,
-    selectionFile = 9,
-    comboBox = 10,
-    number = 11
+    list = 4,
+    textoMultiline = 5,
+    password = 6,
+    hidenField = 7,
+    checkBox = 8,
+    radioButton = 9,
+    selectionFile = 10,
+    comboBox = 11,
+    number = 12
 }
 export declare enum TypeResult {
     date = 0,
