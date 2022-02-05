@@ -7,9 +7,9 @@
             class="dt-jg-scroll-container dt-jg-flex dt-jg-flex-row dt-jg-border dt-jg-border-gray-300 
                             dt-jg-rounded-md dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white">
             <div class="dt-jg-tag dt-jg-mx-0.5 dt-jg-text-gray-400" v-for="(item,key) in _selectedList" :key="key">
-                <div class="dt-jg-flex dt-jg-flex-row">
+                <div class="dt-jg-flex dt-jg-flex-row" style="margin: auto 0;">
                     <span class="dt-jg-m-auto">{{item.description}}</span>
-                    <CloseIcon class="dt-jg-m-auto" @click.stop="closeItem(item)"/>
+                    <CloseIcon style="margin: auto 0 auto auto;" @click.stop="closeItem(item)"/>
                 </div>
             </div>
         </PerfectScrollbar>

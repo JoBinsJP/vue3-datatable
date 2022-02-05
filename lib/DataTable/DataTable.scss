@@ -422,8 +422,9 @@
     height: 1.5rem;
     width: 5.5rem;
     text-align: left;
-    display:inline-block;
     margin: auto 0 auto 0.25rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .dt-jg-scroll-container {
