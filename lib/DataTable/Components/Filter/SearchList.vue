@@ -4,7 +4,7 @@
             @click="closeDropDown" 
             :options="options" 
             style="padding-right: 1.6rem !important;height: 2.35rem;" 
-            class="dt-jg-scroll-container dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2 
+            class="dt-jg-scroll-container dt-jg-block dt-jg-border dt-jg-border-gray-300 
                             dt-jg-rounded-md dt-jg-w-full dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white">
             <div class="dt-jg-tag dt-jg-mx-0.5 dt-jg-text-gray-400" v-for="(item,key) in _selectedList" :key="key">
                 <div class="dt-jg-flex dt-jg-flex-row">
@@ -46,7 +46,6 @@
     import moment from "moment";
     import FilterDataList from "lib/DataTable/@types/FilterDataList";
     import { PerfectScrollbar } from "vue3-perfect-scrollbar"
-    import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css"
 
     export default defineComponent({
         name: "SearchList",
@@ -138,3 +137,6 @@
         },
     })
 </script>
+<style lang="scss">
+    @import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
+</style>
