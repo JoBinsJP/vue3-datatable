@@ -1,6 +1,6 @@
 {
     "name": "@jagjerez/vue3-datatable",
-    "version": "0.1.8",
+    "version": "0.1.9",
     "description": "DataTable component with basic pagination, search filters etc for Vue3",
     "keywords": [
         "datatable",
@@ -10,9 +10,9 @@
     ],
     "author": {
         "name": "Puncoz Nepal",
-        "url": "https://github.com/jagjerez"
+        "url": "https://github.com/puncoz-official"
     },
-    "repository": "https://github.com/jagjerez/vue3-datatable.git",
+    "repository": "https://github.com/JoBinsJP/vue3-datatable.git",
     "homepage": "https://vue3-datatable.netlify.app/",
     "private": false,
     "files": [
