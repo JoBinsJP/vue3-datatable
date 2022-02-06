@@ -139,7 +139,7 @@
         formatString,
     }                              from "./utils/helpers"
     import { FilterDefinition } from "./@types/FilterDefinition"
-import { FilterCriteria } from "./@types"
+    import { FilterCriteria } from "./@types"
 
     const PER_PAGE = 10
 
@@ -213,7 +213,6 @@ import { FilterCriteria } from "./@types"
             const uniqueId = () => Math.floor(Math.random() * 100)
 
             const fireDataLoad = () => {
-                console.log('sss')
                 selectedRowIndex.value.splice(0,selectedRowIndex.value.length);
                 emit("loadData", tableQuery.value)
             }
