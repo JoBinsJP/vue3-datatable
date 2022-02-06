@@ -7,10 +7,10 @@
         </div>
         <PerfectScrollbar
             :options="options" 
-            style="white-space:nowrap;height: 1.6rem;;" >
+            style="white-space:nowrap;height: 1.6rem;;">
             <div style="display:inline-block" class="dt-jg-tag dt-jg-mx-0.5 dt-jg-text-gray-400" v-for="(item,key) in _selectedList" :key="key">
                 <div class="dt-jg-flex dt-jg-flex-row" style="margin: auto 0;">
-                    <div style="height: auto;margin-top: auto;margin-bottom: auto;" >{{item.description}}</div>
+                    <div style="height: auto;margin-top: auto;margin-bottom: auto;">{{item.description}}</div>
                     <div style="margin: auto 0 auto auto;">
                         <CloseIcon  @click.stop="closeItem(item)"/>
                     </div>
@@ -23,20 +23,20 @@
     
     <ul class="dt-jg-dropdown dt-jg-ul dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
                                         dt-jg-rounded-md dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white" 
-            :class="{'dt-jg-dropdown-open':open}" 
-            style="overflow-y: scroll;height: 7.5rem;">
-            <li class="dt-jg-li hover:dt-jg-li" v-for="(item,key) in _list" :key="key">
-                <span class="dt-jg-flex dt-jg-flex-row">
-                    <input 
-                        ref="checkBox" 
-                        class="dt-jg-checkbox dt-jg-mx-0.5" 
-                        type="checkbox" 
-                        @change="itemSelect($event,item)" 
-                        :checked="verifyIsChecked(item)"/>
-                    <span class="dt-jg-mx-0.5">{{item.description}}</span>
-                </span>
-            </li>
-        </ul>
+        :class="{'dt-jg-dropdown-open':open}" 
+        style="overflow-y: scroll;height: 7.5rem;">
+        <li class="dt-jg-li hover:dt-jg-li" v-for="(item,key) in _list" :key="key">
+            <span class="dt-jg-flex dt-jg-flex-row">
+                <input 
+                    ref="checkBox" 
+                    class="dt-jg-checkbox dt-jg-mx-0.5" 
+                    type="checkbox" 
+                    @change="itemSelect($event,item)" 
+                    :checked="verifyIsChecked(item)"/>
+                <span class="dt-jg-mx-0.5">{{item.description}}</span>
+            </span>
+        </li>
+    </ul>
 </template>
 
 <script lang="ts">
