@@ -426,9 +426,7 @@
     border-radius: 0.25rem;
     text-align: left;
     margin: auto 0 auto auto;
-    display: flex;
-    flex-direction: column;
-    float: left;
+    
 }
 
 .dt-jg-scroll-container {
@@ -454,7 +452,6 @@
     border-top-color: rgba(209, 213, 219, var(--jg-border-opacity));
     border-right-color: rgba(209, 213, 219, var(--jg-border-opacity));
     border-bottom-color: rgba(209, 213, 219, var(--jg-border-opacity));
-    height: 100%;
 }
 
 .dt-jg-input-list{

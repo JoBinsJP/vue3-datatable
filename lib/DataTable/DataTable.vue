@@ -133,11 +133,13 @@
     import TableWrapper            from "./Components/Table/TableWrapper.vue"
     import TBody                   from "./Components/Table/TBody.vue"
     import THead                   from "./Components/Table/THead.vue"
+    import {cloneDeep}                   from "lodash"
     import {
         debounce,
         formatString,
     }                              from "./utils/helpers"
     import { FilterDefinition } from "./@types/FilterDefinition"
+import { FilterCriteria } from "./@types"
 
     const PER_PAGE = 10
 
@@ -211,6 +213,7 @@
             const uniqueId = () => Math.floor(Math.random() * 100)
 
             const fireDataLoad = () => {
+                console.log('sss')
                 selectedRowIndex.value.splice(0,selectedRowIndex.value.length);
                 emit("loadData", tableQuery.value)
             }
@@ -231,7 +234,17 @@
             }
 
             const handleOnSearchChange = debounce(({value,filterData}) => {
-                tableQuery.value = { ...tableQuery.value, page: 1, dataCriteria: {value:value,filterDefinition:filterData} }
+                const criteriosFiltrado = (cloneDeep(tableQuery.value.dataCriteria) || []) as FilterCriteria[]
+                if(criteriosFiltrado && criteriosFiltrado.length > 0){
+                    const indexTable = criteriosFiltrado.findIndex(d=>d.filterDefinition?.code === (filterData as FilterDefinition).code);
+                    if(indexTable > -1){
+                        criteriosFiltrado.splice(indexTable,1);
+                    }
+                    
+                }
+                criteriosFiltrado.push({value:value,filterDefinition:filterData})
+                tableQuery.value = { ...tableQuery.value, page: 1,dataCriteria:[...criteriosFiltrado]}
+                
             })
 
             const handleOnPaginationSizeChange = (value) => {
@@ -247,8 +260,6 @@
             }
 
             const selectAllHandler = ($select: boolean) => {
-                //console.log(tableRows.value)
-                //console.log(selectedRowIndex.value)
                 selectedRowIndex.value.splice(0,selectedRowIndex.value.length);
                 if($select){
                     tableRows.value.forEach((dato,index)=>{
