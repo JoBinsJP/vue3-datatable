@@ -45,37 +45,36 @@
 <script lang="ts">
     import { FilterDefinition } from "../../@types/FilterDefinition"
     import Datepicker from "vue3-date-time-picker";
-    import { computed, defineComponent, onMounted, PropType, ref } from "vue"
+    import { computed, defineComponent, onMounted, PropType, ref, SetupContext } from "vue"
     import SearchIcon from "./SearchIcon.vue"
     import SearchInput from "./SearchInput.vue"
     import SearchList from "./SearchList.vue"
 
     export default defineComponent({
         name: "Filter",
-
         components: { SearchInput, SearchIcon,Datepicker,SearchList },
-
         props: {
             definicionFiltro: { type: Object as PropType<FilterDefinition>, required: false },
         },
 
         emits: ["input"],
-        methods:{
-            emitirEvento($data,$filterData){
-                //console.log($data)
-                this.$emit("input",{value:$data,filterData:$filterData})
-            },
-        },
-        setup(props){
+        setup(props,{emit}:SetupContext){
             const defincion = computed(()=>props.definicionFiltro as FilterDefinition);
             const defaultValue = ref();
+            const emitirEvento = ($data,$filterData) => {
+                //console.log($data)
+                emit("input",{value:$data,filterData:$filterData})
+            }
             onMounted(() => {
                 defaultValue.value = props.definicionFiltro?.defaultVauel;
-                
+                if(defaultValue.value){
+                    emitirEvento(defaultValue.value,defincion.value);
+                }
             })
             return {
                 defincion,
                 defaultValue,
+                emitirEvento,
             }
         },
     })
