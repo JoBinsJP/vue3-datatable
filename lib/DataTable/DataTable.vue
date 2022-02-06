@@ -40,7 +40,7 @@
                         <slot v-if="sn" name="thead-sn">
                             <TableHeadCell class="dt-jg-table-thead-th-sn" v-text="`S.N.`"/>
                         </slot>
-
+                        
                         <slot name="thead" :column="tableColumns">
                             <TableHeadCell v-for="(label, key) in tableColumns" :key="`datatable-thead-th-${key}`" v-text="label"/>
                         </slot>
