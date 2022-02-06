@@ -1,21 +1,27 @@
 <template>
-    <div>
-        <PerfectScrollbar 
-            @click="closeDropDown" 
+
+    <div class="dt-jg-input-list" @click="closeDropDown">
+        <div class="dt-jg-dropdown-button dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none">
+            <DropDownDownIcon v-if="open" class="dt-jg-text-gray-400"/>
+            <DropDownUpIcon v-if="!open" class="dt-jg-text-gray-400"/>
+        </div>
+        <PerfectScrollbar
             :options="options" 
-            style="padding-right: 1.6rem !important;height: 2.45rem;white-space:nowrap;" 
-            class="dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
-                                    dt-jg-rounded-md dt-jg-w-full dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-bg-white">
+            style="white-space:nowrap;height: 1.6rem;;" >
             <div style="display:inline-block" class="dt-jg-tag dt-jg-mx-0.5 dt-jg-text-gray-400" v-for="(item,key) in _selectedList" :key="key">
                 <div class="dt-jg-flex dt-jg-flex-row" style="margin: auto 0;">
-                    <span class="dt-jg-m-auto">{{item.description}}</span>
-                    <CloseIcon style="margin: auto 0 auto auto;" @click.stop="closeItem(item)"/>
+                    <div style="height: auto;margin-top: auto;margin-bottom: auto;" >{{item.description}}</div>
+                    <div style="margin: auto 0 auto auto;">
+                        <CloseIcon  @click.stop="closeItem(item)"/>
+                    </div>
+                    
                 </div>
             </div>
         </PerfectScrollbar>
-            
         
-        <ul class="dt-jg-dropdown dt-jg-ul dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
+    </div>
+    
+    <ul class="dt-jg-dropdown dt-jg-ul dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
                                         dt-jg-rounded-md dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white" 
             :class="{'dt-jg-dropdown-open':open}" 
             style="overflow-y: scroll;height: 7.5rem;">
@@ -31,12 +37,6 @@
                 </span>
             </li>
         </ul>
-
-        <div class="dt-jg-dropdown-button dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none">
-            <DropDownDownIcon v-if="open"  class="dt-jg-text-gray-400"/>
-            <DropDownUpIcon v-if="!open"  class="dt-jg-text-gray-400"/>
-        </div>
-    </div>
 </template>
 
 <script lang="ts">
@@ -136,6 +136,3 @@
         },
     })
 </script>
-<style lang="scss">
-    @import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
-</style>

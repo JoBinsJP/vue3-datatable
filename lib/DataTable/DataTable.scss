@@ -1,3 +1,4 @@
+@import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
 @import "vue3-date-time-picker/dist/main.css";
 /* stylelint-disable */
 *, ::before, ::after {
@@ -413,6 +414,9 @@
     width: 100%;
 }
 .dt-jg-tag{
+    font-size: 0.80rem;
+    font-style: normal;
+    font-weight: normal;
     --jg-border-opacity: 1;
     border-style: solid;
     border-color: rgba(209, 213, 219, var(--jg-border-opacity));
@@ -420,12 +424,11 @@
     padding-left: 0.25rem;
     padding-right: 0.25rem;
     border-radius: 0.25rem;
-    height: 1.5rem;
-    width: 5.5rem;
     text-align: left;
-    margin: auto 0 auto 0.25rem;
+    margin: auto 0 auto auto;
     display: flex;
     flex-direction: column;
+    float: left;
 }
 
 .dt-jg-scroll-container {
@@ -438,6 +441,7 @@
 }
 
 .dt-jg-dropdown-button{
+    
     --jg-bg-opacity: 1;
     border-style: solid;
     background-color: rgba(255, 255, 255, var(--jg-bg-opacity));
@@ -450,6 +454,29 @@
     border-top-color: rgba(209, 213, 219, var(--jg-border-opacity));
     border-right-color: rgba(209, 213, 219, var(--jg-border-opacity));
     border-bottom-color: rgba(209, 213, 219, var(--jg-border-opacity));
+    height: 100%;
+}
+
+.dt-jg-input-list{
+    --jg-dt-background-color: #fff;
+    --jg-dt-border-color: #ddd;
+    --jg-dt-text-color: #212121;
+    background-color: var(--jg-dt-background-color);
+    border-radius: 4px;
+    font-family: -apple-system,blinkmacsystemfont,"Segoe UI",roboto,oxygen,ubuntu,cantarell,"Open Sans","Helvetica Neue",sans-serif;
+    border: 1px solid var(--jg-dt-border-color);
+    outline: none;
+    transition: border-color .2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    width: 100%;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 6px 12px;
+    padding-left: 1rem;
+    padding-right: 2.54rem;
+    color: var(--jg-dt-text-color);
+    box-sizing: border-box;
+    cursor: pointer;
+    overflow: hidden !important;
 }
 
 @media (min-width: 640px){
