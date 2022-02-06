@@ -5,17 +5,20 @@
             <template v-if="defincion.typeControl === 0">
                 <Datepicker 
                     :format="defincion.format"
-                    :enableTimePicker="false" 
+                    :enableTimePicker="false"
+                    v-model="defaultValue" 
                     @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             <template v-if="defincion.typeControl === 1">
                 <Datepicker 
-                    timePicker 
+                    :timePicker="true"
                     :format="defincion.format"
+                    enableTimePicker
+                    v-model="defaultValue"
                     @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             <template v-if="defincion.typeControl === 2">
-                <SearchInput @input="emitirEvento($event.target.value,defincion)"/>
+                <SearchInput @input="emitirEvento($event.target.value,defincion)" :value="defaultValue"/>
 
                 <div class="dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none">
                     <SearchIcon class="dt-jg-text-gray-400"/>
@@ -25,8 +28,8 @@
                 <Datepicker 
                     :format="defincion.format" 
                     range 
-                    :partialRange="false" 
                     :enableTimePicker="false"
+                    v-model="defaultValue"
                     @update:modelValue="emitirEvento($event,defincion)"/>
             </template>
             <template v-if="defincion.typeControl === 4">
@@ -42,7 +45,7 @@
 <script lang="ts">
     import { FilterDefinition } from "../../@types/FilterDefinition"
     import Datepicker from "vue3-date-time-picker";
-    import { computed, defineComponent, PropType } from "vue"
+    import { computed, defineComponent, onMounted, PropType, ref } from "vue"
     import SearchIcon from "./SearchIcon.vue"
     import SearchInput from "./SearchInput.vue"
     import SearchList from "./SearchList.vue"
@@ -65,8 +68,14 @@
         },
         setup(props){
             const defincion = computed(()=>props.definicionFiltro as FilterDefinition);
+            const defaultValue = ref();
+            onMounted(() => {
+                defaultValue.value = props.definicionFiltro?.defaultVauel;
+                
+            })
             return {
                 defincion,
+                defaultValue,
             }
         },
     })

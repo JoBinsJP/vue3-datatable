@@ -52,7 +52,6 @@
         TableBody,
         TableHead,
     }            from "../../../lib/DataTable"
-    import "vue3-date-time-picker/dist/main.css"
 
     const Filter = defineComponent({
         components: { TableBody, TableHead, DataTable },

@@ -1,3 +1,4 @@
+@import "vue3-date-time-picker/dist/main.css";
 /* stylelint-disable */
 *, ::before, ::after {
     --jg-ring-inset: var(--jg-empty);
@@ -429,6 +430,11 @@
 
 .dt-jg-scroll-container {
     white-space:nowrap;
+}
+
+.dt-jg-dropdown{
+    width: -moz-available;
+    width: -webkit-fill-available;
 }
 
 .dt-jg-dropdown-button{

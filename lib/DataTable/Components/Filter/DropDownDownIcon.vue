@@ -4,7 +4,7 @@
         viewBox="0 0 20 20" 
         fill="none" 
         stroke="currentColor" 
-        stroke-width="3" 
+        stroke-width="2" 
         stroke-linecap="round" 
         stroke-linejoin="round" 
         class="dt-jg-h-5 dt-jg-h-5 feather feather-chevron-down">

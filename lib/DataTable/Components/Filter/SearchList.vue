@@ -3,10 +3,10 @@
         <PerfectScrollbar 
             @click="closeDropDown" 
             :options="options" 
-            style="padding-right: 1.6rem !important;height: 2.45rem;" 
-            class="dt-jg-scroll-container dt-jg-flex dt-jg-flex-row dt-jg-border dt-jg-border-gray-300 
-                            dt-jg-rounded-md dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white">
-            <div class="dt-jg-tag dt-jg-mx-0.5 dt-jg-text-gray-400" v-for="(item,key) in _selectedList" :key="key">
+            style="padding-right: 1.6rem !important;height: 2.45rem;white-space:nowrap;" 
+            class="dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
+                                    dt-jg-rounded-md dt-jg-w-full dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-bg-white">
+            <div style="display:inline-block" class="dt-jg-tag dt-jg-mx-0.5 dt-jg-text-gray-400" v-for="(item,key) in _selectedList" :key="key">
                 <div class="dt-jg-flex dt-jg-flex-row" style="margin: auto 0;">
                     <span class="dt-jg-m-auto">{{item.description}}</span>
                     <CloseIcon style="margin: auto 0 auto auto;" @click.stop="closeItem(item)"/>
@@ -16,8 +16,9 @@
             
         
         <ul class="dt-jg-dropdown dt-jg-ul dt-jg-block dt-jg-border dt-jg-border-gray-300 dt-jg-pr-10 dt-jg-px-2 dt-jg-py-2
-                                        dt-jg-rounded-md dt-jg-w-full dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white" 
-            :class="{'dt-jg-dropdown-open':open}">
+                                        dt-jg-rounded-md dt-jg-outline-none focus:dt-jg-ring-1 focus:dt-jg-ring-inset sm:dt-jg-text-sm dt-jg-text-left dt-jg-bg-white" 
+            :class="{'dt-jg-dropdown-open':open}" 
+            style="overflow-y: scroll;height: 7.5rem;">
             <li class="dt-jg-li hover:dt-jg-li" v-for="(item,key) in _list" :key="key">
                 <span class="dt-jg-flex dt-jg-flex-row">
                     <input 
@@ -31,7 +32,7 @@
             </li>
         </ul>
 
-        <div class="dt-jg-dropdown-button dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none ">
+        <div class="dt-jg-dropdown-button dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none">
             <DropDownDownIcon v-if="open"  class="dt-jg-text-gray-400"/>
             <DropDownUpIcon v-if="!open"  class="dt-jg-text-gray-400"/>
         </div>
@@ -56,7 +57,6 @@
             CloseIcon,
         },
         props: {
-            value: { type: Object, required: false,default:null },
             format: { type: String,required: false, default:"" },
             list: { type: Array as PropType<FilterDataList[]>, required: true,default:[] as FilterDataList[] },
             enabled:{ type: Boolean, required: false, default:true },
@@ -77,7 +77,7 @@
             const _list = computed(()=>props.list);
             const _selectedList = ref([] as FilterDataList[])
             const _enabled = computed(()=>props.enabled || false);
-            const _value = computed(()=>props.value);
+            //const _value = computed(()=>props.value);
             /*const _value1 = ref(props.value);
             const _value2 = ref(props.value);
             const _value = computed(()=>`From ${formatDateTime(_value1.value)} To ${formatDateTime(_value2.value)}`);*/
@@ -123,7 +123,6 @@
                 _enabled,
                 _format,
                 open,
-                _value,
                 _list,
                 settings,
                 _selectedList,
