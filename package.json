@@ -1,6 +1,6 @@
 {
     "name": "@jagjerez/vue3-datatable",
-    "version": "0.1.14",
+    "version": "0.1.15",
     "description": "DataTable component with basic pagination, search filters etc for Vue3",
     "keywords": [
         "datatable",
