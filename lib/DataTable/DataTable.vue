@@ -34,7 +34,7 @@
                 <TableWrapper>
                     <THead>
                         <slot v-if="enabledCheckBoxSelection" name="thead-selectedRow">
-                            <TableHeadCheckBox :rows="tableRows" :elements-selected="selectedRowIndex" @selectAll="selectAllHandler"/>
+                            <TableHeadCheckBox :rows="tableRows" :elements-selected="elemenesSelected" @selectAll="selectAllHandler"/>
                         </slot>
 
                         <slot v-if="sn" name="thead-sn">
@@ -63,7 +63,7 @@
                                   @clicked="rowClickHandler(row)">
 
                             <slot v-if="enabledCheckBoxSelection" name="tbody-selectedRow">
-                                <TableBodyCheckBox :row-index="rowIndex" :elements-selected="selectedRowIndex" @selectRow="selectRowHandler"/>
+                                <TableBodyCheckBox :row-index="rowIndex" :elements-selected="elemenesSelected" @selectRow="selectRowHandler"/>
                             </slot>
                             <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
                                 <TableBodyCell class="dt-jg-table-tbody-td-sn" v-text="rowIndex + 1 + paginatedRowIndex"/>
@@ -192,6 +192,7 @@
             })
             const filters = computed(() => props.definitionsFilter || [])
             const selectedRowIndex =ref<number[]>([]);
+            const elemenesSelected = computed(()=>selectedRowIndex.value);
             const showPagination = computed(() => !!props.pagination)
             const totalData = computed(() => props.pagination?.total || props.rows.length)
             const tableRows = computed<any[]>(() => props.rows)
@@ -290,7 +291,7 @@
                 tableRows,
                 tableColumns,
                 paginatedRowIndex,
-                selectedRowIndex,
+                elemenesSelected,
                 selectRowHandler,
                 uniqueId,
                 handlePageChange,
