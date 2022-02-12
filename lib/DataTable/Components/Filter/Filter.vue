@@ -1,32 +1,82 @@
 <template>
-    <div class="dt__filter dt-mb-3 dt-w-full">
-        <div class="dt-w-64">
-            <label for="email" class="dt-sr-only">Search</label>
-            <div class="dt-relative dt-rounded-md dt-shadow-sm">
-                <SearchInput :value="search" @input="$emit('input', $event.target.value)"/>
+    <div class="dt-jg-w-64">
+        <label :for="defincion.code" class="dt-jg-sr-only">Search</label>
+        <div class="dt-jg-filter dt-jg-relative dt-jg-rounded-md dt-jg-shadow-sm">
+            <template v-if="defincion.typeControl === 0">
+                <Datepicker 
+                    :format="defincion.format"
+                    :enableTimePicker="false"
+                    v-model="defaultValue" 
+                    @update:modelValue="emitirEvento($event,defincion)"/>
+            </template>
+            <template v-if="defincion.typeControl === 1">
+                <Datepicker 
+                    :timePicker="true"
+                    :format="defincion.format"
+                    enableTimePicker
+                    v-model="defaultValue"
+                    @update:modelValue="emitirEvento($event,defincion)"/>
+            </template>
+            <template v-if="defincion.typeControl === 2">
+                <SearchInput @input="emitirEvento($event.target.value,defincion)" :value="defaultValue"/>
 
-                <div class="dt-absolute dt-inset-y-0 dt-right-0 dt-pr-3 dt-flex dt-items-center dt-pointer-events-none">
-                    <SearchIcon class="dt-text-gray-400"/>
+                <div class="dt-jg-absolute dt-jg-inset-y-0 dt-jg-right-0 dt-jg-pr-3 dt-jg-flex dt-jg-items-center dt-jg-pointer-events-none">
+                    <SearchIcon class="dt-jg-text-gray-400"/>
                 </div>
-            </div>
+            </template>
+            <template v-if="defincion.typeControl === 3">
+                <Datepicker 
+                    :format="defincion.format" 
+                    range 
+                    :enableTimePicker="false"
+                    v-model="defaultValue"
+                    @update:modelValue="emitirEvento($event,defincion)"/>
+            </template>
+            <template v-if="defincion.typeControl === 4">
+                <SearchList 
+                    :format="defincion.format"
+                    :list="defincion.list"
+                    @input="emitirEvento($event,defincion)"/>
+            </template>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-    import { defineComponent } from "vue"
-    import SearchIcon          from "./SearchIcon.vue"
-    import SearchInput         from "./SearchInput.vue"
+    import { FilterDefinition } from "../../@types/FilterDefinition"
+    import Datepicker from "vue3-date-time-picker";
+    import { computed, defineComponent, onMounted, PropType, ref, SetupContext } from "vue"
+    import SearchIcon from "./SearchIcon.vue"
+    import SearchInput from "./SearchInput.vue"
+    import SearchList from "./SearchList.vue"
 
     export default defineComponent({
         name: "Filter",
-
-        components: { SearchInput, SearchIcon },
-
+        components: { SearchInput, SearchIcon,Datepicker,SearchList },
         props: {
-            search: { type: String, required: true },
+            definicionFiltro: { type: Object as PropType<FilterDefinition>, required: false },
         },
 
         emits: ["input"],
+        setup(props,{emit}:SetupContext){
+            const defincion = computed(()=>props.definicionFiltro as FilterDefinition);
+            const defaultValue = ref();
+            const emitirEvento = ($data,$filterData) => {
+                //console.log($data)
+                emit("input",{value:$data,filterData:$filterData})
+            }
+            onMounted(() => {
+                defaultValue.value = props.definicionFiltro?.defaultVauel;
+                if(defaultValue.value){
+                    emitirEvento(defaultValue.value,defincion.value);
+                }
+            })
+            return {
+                defincion,
+                defaultValue,
+                emitirEvento,
+            }
+        },
     })
 </script>
+

@@ -1,3 +1,4 @@
+export * from "./@types"
 export { default as DataTable }      from "./DataTable.vue"
 export { default as TableHead }      from "./Components/Table/TableHeadCell.vue"
 export { default as TableHeadCell }  from "./Components/Table/TableHeadCell.vue"

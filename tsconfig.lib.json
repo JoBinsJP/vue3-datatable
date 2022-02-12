@@ -1,0 +1,14 @@
+{
+    "extends": "./tsconfig.json",
+    "include": ["lib/DataTable/**/*.vue", "lib/DataTable/**/*.ts", "lib/DataTable/**/*.d.ts", "lib/DataTable/**/*.tsx", "src/shims-vue.d.ts"],
+    "compilerOptions": {
+        "noEmit": false,
+        "outDir": "dist",
+        "declarationDir": "dist",
+        "declaration": true,
+        "paths": {
+            "@/lib/*": ["lib/DataTable/*"],
+            "@/type/*": ["lib/DataTable/@types/*"]
+        }
+    }
+}

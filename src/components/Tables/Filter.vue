@@ -3,6 +3,7 @@
                 :pagination="pagination"
                 :query="query"
                 :loading="isLoading"
+                :definitionsFilter="filters"
                 top-pagination
                 striped
                 sn
@@ -41,6 +42,7 @@
 
 <script lang="ts">
     import axios from "axios"
+    import { FilterDefinition, TypeControl, TypeResult } from "../../../lib/DataTable/@types/FilterDefinition"
     import {
         defineComponent,
         ref,
@@ -60,10 +62,20 @@
             const query = ref({
                 search: "test",
             })
+            const filters = ref([] as FilterDefinition[]);
+            const filter: FilterDefinition = {code:"1",indice:1,format:"yyyy-MM-dd",typeControl: TypeControl.dateRange,defaultVauel:new Date(),typeData:TypeResult.text};
+            filters.value.push(filter)
+            /*const filter2: FilterDefinition = {code:"2",indice:2,format:"yyyy-MM-dd HH:mm",typeControl: TypeControl.date,defaultVauel:new Date(),typeData:TypeResult.date};
+            filters.value.push(filter2)*/
+            const filter3: FilterDefinition = {code:"3",indice:3,format:"HH:mm",typeControl: TypeControl.hour,defaultVauel:{hours: new Date().getHours(),minutes:new Date().getMinutes()},typeData:TypeResult.text};
+            filters.value.push(filter3)
+            const filter4: FilterDefinition = {code:"2",indice:2,typeControl: TypeControl.list,list:[{code:1,description:"item 1"},{code:2,description:"item 2"},{code:3,description:"item 3"},{code:4,description:"item 4"},{code:5,description:"item 5"}],typeData:TypeResult.text};
+            filters.value.push(filter4)
             const isLoading = ref(false)
 
             const loadData = async (query) => {
                 isLoading.value = true
+                console.log(query);
                 const { data: { data, totalPassengers } } = await axios.get("https://api.instantwebtools.net/v1/passenger", {
                     params: {
                         page: (query.page - 1) < 0 ? 0 : query.page - 1,
@@ -81,7 +93,7 @@
 
             const formatUrl = (url: string) => url.startsWith("http") ? url : `http://${url}`
 
-            return { tableData, pagination, query, isLoading, loadData, formatAirline, formatUrl }
+            return { tableData, pagination, query,filters, isLoading, loadData, formatAirline, formatUrl }
         },
     })
 

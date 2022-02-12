@@ -1,6 +1,6 @@
 <template>
-    <div class="dt__pagination_wrapper--bottom dt-bg-white dt-shadow-inner">
-        <div class="dt-px-4 sm:dt-px-6 dt-py-4">
+    <div class="dt-jg-bg-white dt-jg-shadow-inner">
+        <div class="dt-jg-px-4 sm:dt-jg-px-6 dt-jg-py-4">
             <slot/>
         </div>
     </div>

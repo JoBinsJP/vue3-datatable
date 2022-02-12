@@ -1,5 +1,5 @@
 <template>
-    <nav class="dt__pagination__nav dt-relative dt-z-0 dt-inline-flex dt-rounded-md dt-shadow-sm dt--space-x-px" aria-label="Pagination">
+    <nav class="dt-jg-relative dt-jg-z-0 dt-jg-inline-flex dt-jg-rounded-md dt-jg-shadow-sm dt-jg-space-x-px" aria-label="Pagination">
         <slot/>
     </nav>
 </template>
