@@ -1,5 +1,6 @@
 <template>
-    <data-table :rows="data"/>
+    <DataTable :rows="data"
+               sortable/>
 </template>
 
 <script lang="ts">
