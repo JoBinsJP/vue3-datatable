@@ -4,15 +4,30 @@
                 sn
                 hoverable
                 striped
+                :query="queries"
                 @rowClicked="rowClickHandler"
                 @loadData="loadData">
-        <template #thead>
-            <table-head>Full Name</table-head>
-            <table-head>Trips</table-head>
-            <table-head>Airline</table-head>
+        <template #thead="{sorting, sort}">
+            <table-head sortable="name"
+                        :sort="sort"
+                        multiple
+                        @sorting="sorting">
+                Full Name
+            </table-head>
+            <table-head sortable="trips"
+                        :sort="sort"
+                        multiple
+                        @sorting="sorting">
+                Trips
+            </table-head>
+            <table-head sortable="airline"
+                        :sort="sort"
+                        multiple
+                        @sorting="sorting">
+                Airline
+            </table-head>
             <table-head/>
         </template>
-
         <template #tbody="{row}">
             <table-body v-text="row.name"/>
 
@@ -27,7 +42,8 @@
                     </div>
                     <div class="dt-ml-4">
                         <a :href="formatUrl(formatAirline(row.airline).website)" target="_blank">
-                            <p class="dt-text-sm dt-font-medium dt-text-gray-900" v-text="formatAirline(row.airline).name"/>
+                            <p class="dt-text-sm dt-font-medium dt-text-gray-900"
+                               v-text="formatAirline(row.airline).name"/>
                         </a>
                         <p class="dt-text-sm dt-text-gray-400" v-text="formatAirline(row.airline).slogan"/>
                         <p class="dt-text-sm dt-text-gray-500" v-text="formatAirline(row.airline).head_quaters"/>
@@ -62,8 +78,18 @@
 
             const pagination = ref({})
 
+            const queries = ref({
+                sort: "name:asc",
+            })
+
             const loadData = async (query) => {
-                const { data: { data, totalPassengers } } = await axios.get("https://api.instantwebtools.net/v1/passenger", {
+                queries.value = { ...query }
+                const {
+                    data: {
+                        data,
+                        totalPassengers,
+                    },
+                } = await axios.get("https://api.instantwebtools.net/v1/passenger", {
                     params: {
                         page: (query.page - 1) < 0 ? 0 : query.page - 1,
                         size: query.per_page,
@@ -86,7 +112,7 @@
                 console.log("Save Clicked")
             }
 
-            return { tableData, pagination, loadData, formatAirline, formatUrl, rowClickHandler, save }
+            return { tableData, pagination, queries, loadData, formatAirline, formatUrl, rowClickHandler, save }
         },
     })
 

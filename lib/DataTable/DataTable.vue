@@ -17,7 +17,10 @@
                                 :per-page="parseInt(tableQuery.per_page.toString())"
                                 @changed="handlePageChange">
                         <template #pagination-info="paginationInfo">
-                            <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
+                            <slot name="pagination-info"
+                                  :start="paginationInfo.start"
+                                  :end="paginationInfo.end"
+                                  :total="paginationInfo.total">
                                 Showing
                                 <span class="dt-font-medium" v-text="paginationInfo.start"/>
                                 to
@@ -31,7 +34,9 @@
 
                     <Filter v-if="filter && !topPagination" :search="tableQuery.search" @input="handleOnSearchChange"/>
 
-                    <PaginationSize :value="tableQuery.per_page" :options="perPageOptions" @input="handleOnPaginationSizeChange"/>
+                    <PaginationSize :value="tableQuery.per_page"
+                                    :options="perPageOptions"
+                                    @input="handleOnPaginationSizeChange"/>
                 </TopPaginationWrapper>
 
                 <TableWrapper>
@@ -40,10 +45,14 @@
                             <TableHeadCell class="dt__table__thead__th_sn" v-text="`S.N.`"/>
                         </slot>
 
-                        <slot name="thead" :column="tableColumns">
+                        <slot name="thead" :column="tableColumns" :sorting="handleSorting" :sort="query.sort ?? ''">
                             <TableHeadCell v-for="(label, key) in tableColumns"
                                            :key="`datatable-thead-th-${key}`"
-                                           v-text="label"/>
+                                           :sortable="sortable ? key.toString() : ''"
+                                           :sort="query.sort ?? ''"
+                                           @sorting="handleSorting">
+                                {{ label }}
+                            </TableHeadCell>
                         </slot>
                     </THead>
 
@@ -56,7 +65,8 @@
                                   :striped="striped"
                                   @clicked="rowClickHandler(row)">
                             <slot v-if="sn" name="tbody-sn" :sn="rowIndex + 1">
-                                <TableBodyCell class="dt__table__tbody_td_sn" v-text="rowIndex + 1 + paginatedRowIndex"/>
+                                <TableBodyCell class="dt__table__tbody_td_sn"
+                                               v-text="rowIndex + 1 + paginatedRowIndex"/>
                             </slot>
 
                             <slot name="tbody" :index="rowIndex" :row="row">
@@ -79,7 +89,10 @@
                                 :per-page="parseInt(tableQuery.per_page.toString())"
                                 @changed="handlePageChange">
                         <template #pagination-info="paginationInfo">
-                            <slot name="pagination-info" :start="paginationInfo.start" :end="paginationInfo.end" :total="paginationInfo.total">
+                            <slot name="pagination-info"
+                                  :start="paginationInfo.start"
+                                  :end="paginationInfo.end"
+                                  :total="paginationInfo.total">
                                 Showing
                                 <span class="dt-font-medium" v-text="paginationInfo.start"/>
                                 to
@@ -157,12 +170,17 @@
             sn: { type: Boolean, required: false, default: false },
             filter: { type: Boolean, required: false, default: false },
             loading: { type: Boolean, required: false, default: false },
-            perPageOptions: { type: Array as PropType<Array<string | number>>, required: false, default: () => PER_PAGE_OPTIONS },
+            perPageOptions: {
+                type: Array as PropType<Array<string | number>>,
+                required: false,
+                default: () => PER_PAGE_OPTIONS,
+            },
             query: { type: Object as PropType<QueryProps>, required: false, default: () => ({}) },
             topPagination: { type: Boolean, required: false, default: false },
             bottomPagination: { type: Boolean, required: false, default: true },
             hoverable: { type: Boolean, required: false, default: false },
             nonClickable: { type: Boolean, required: false, default: false },
+            sortable: { type: Boolean, required: false, default: false },
         },
 
         emits: ["loadData", "rowClicked"],
@@ -170,8 +188,9 @@
         setup<T>(props, { emit }: SetupContext) {
             const tableQuery = ref<TableQuery>({
                 page: props.pagination?.page || 1,
-                search: props.query.search || "",
+                search: props.query?.search || "",
                 per_page: props.pagination?.per_page || PER_PAGE,
+                sort: props.query?.sort || "",
             })
 
             const showPagination = computed(() => !!props.pagination)
@@ -217,6 +236,10 @@
                 tableQuery.value = { ...tableQuery.value, page: 1, per_page: value }
             }
 
+            const handleSorting = (value) => {
+                tableQuery.value.sort = value
+            }
+
             const rowClickHandler = (row) => {
                 if (props.nonClickable || !props.hoverable) {
                     return
@@ -237,6 +260,7 @@
                 handleOnSearchChange,
                 handleOnPaginationSizeChange,
                 rowClickHandler,
+                handleSorting,
             }
         },
     })
