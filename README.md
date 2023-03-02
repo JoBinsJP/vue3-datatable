@@ -14,16 +14,40 @@
 
 ```bash
 npm install --save @jobinsjp/vue3-datatable
-
+```
 or,
-
+```bash
 yarn add @jobinsjp/vue3-datatable
 ```
-
 ## Usage
-
+A minimal setup example is presented here using composition api and typescript; though typescript is not necessary to use this package. 
 ```vue
-    <data-table :rows="data"/>
+<template>
+    <DataTable :rows="data"></DataTable>
+</template>
+<script setup lang="ts">
+    import { DataTable } from "@jobinsjp/vue3-datatable"
+    import "@jobinsjp/vue3-datatable/dist/style.css"
+
+    const data = [
+        {
+            "id": 1,
+            "first_name": "Misti",
+            "last_name": "Strase",
+            "email": "mstrase0@instagram.com",
+            "gender": "Non-binary",
+            "ip_address": "151.38.32.165",
+        },
+        {
+            "id": 2,
+            "first_name": "Valentina",
+            "last_name": "Bonas",
+            "email": "vbonas1@is.gd",
+            "gender": "Agender",
+            "ip_address": "103.10.225.246",
+        },
+    ]
+</script>
 ```
 
 ## Properties
